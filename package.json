@@ -1,7 +1,13 @@
 {
   "name": "onsdagsmassan",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.0",
+  "description": "Home of Onsdagsmässan",
+  "author": "Adam Bergman <adam@fransvilhelm.com> (http://fransvilhelm.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adambrgmn/piccolo/issues"
+  },
+  "homepage": "https://github.com/adambrgmn/piccolo#readme",
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
@@ -14,5 +20,12 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adambrgmn/onsdagsmassan.git"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }
