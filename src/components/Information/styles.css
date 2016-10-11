@@ -1,0 +1,34 @@
+.information {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  color: #9BBCD0;
+}
+
+.information-img-container,
+.information-text-container {
+  width: 30rem;
+}
+
+.information-img-container {
+  order: 2;
+}
+
+.information-img {
+  width: 100%;
+}
+
+.information-text-container h2 {
+  font-family: 'Gill Sans', 'Cabin', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.information-text-container p {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+}

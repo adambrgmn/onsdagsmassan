@@ -1,0 +1,30 @@
+.aktuellt {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  color: #9BBCD0;
+}
+
+.aktuellt-img-container,
+.aktuellt-text-container {
+  width: 30rem;
+}
+
+.aktuellt-img {
+  width: 100%;
+}
+
+.aktuellt-text-container h2 {
+  font-family: 'Gill Sans', 'Cabin', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.aktuellt-text-container p {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+}

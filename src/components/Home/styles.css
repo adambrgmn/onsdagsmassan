@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  color: #9BBCD0;
+}
+
+.header-img {
+  width: 25%;
+}
+
+.title,
+.subtitle {
+  margin: 0;
+}
+
+.title {
+  margin-bottom: 0.75rem;
+  font-family: 'EB Garamond', serif;
+  font-weight: 400;
+  font-size: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+}
+
+.subtitle {
+  margin-bottom: 0.5rem;
+  font-family: Gill Sans, 'Cabin', sans-serif;
+  font-weight: normal;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+}
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }

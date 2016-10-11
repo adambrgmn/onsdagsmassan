@@ -1,0 +1,32 @@
+.musik {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  color: #9BBCD0;
+}
+
+.musik-playlist-container,
+.musik-text-container {
+  width: 30rem;
+  height: 380px;
+}
+
+.musik-playlist-container {
+  text-align: center;
+}
+
+.musik-text-container h2 {
+  margin-top: 0;
+  font-family: 'Gill Sans', 'Cabin', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.musik-text-container p {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+}
