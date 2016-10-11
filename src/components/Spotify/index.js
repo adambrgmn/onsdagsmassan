@@ -1,16 +1,23 @@
 import React from 'react';
+import { format } from 'url';
 
 export default ({ uri }) => {
-  console.log(uri);
+  const src = format({
+    protocol: 'https',
+    hostname: 'embed.spotify.com/',
+    query: {
+      theme: 'white',
+      uri,
+    }
+  });
+
   return (
     <iframe
-      src={`https://embed.spotify.com/?uri=${uri}&theme=white`}
+      src={src}
       width="300"
       height="380"
       frameBorder="0"
       allowTransparency="true"
     />
-  )
-};
-
-// <iframe src="https://embed.spotify.com/?uri=spotify:user:wilhelmochson:playlist:3TsLhxE11M6abBZd5atoEu&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+  );
+}

@@ -24,7 +24,6 @@ body {
   font-family: sans-serif;
   border-left: 1rem solid #9BBCD0;
   border-right: 1rem solid #9BBCD0;
-  background-image: url('/bg.jpg');
 }
 
 body::before,

@@ -1,7 +1,5 @@
 import Home from './components/Home';
-import Aktuellt from './components/Aktuellt';
-import Information from './components/Information';
-import Musik from './components/Musik';
+import Section from './components/Section';
 
 export default [
   {
@@ -11,18 +9,7 @@ export default [
     title: 'Hem',
   },
   {
-    pattern: '/aktuellt',
-    component: Aktuellt,
-    title: 'Aktuellt',
-  },
-  {
-    pattern: '/information',
-    component: Information,
-    title: 'Information',
-  },
-  {
-    pattern: '/musik',
-    component: Musik,
-    title: 'Musik',
+    pattern: '/:section',
+    component: Section,
   },
 ];

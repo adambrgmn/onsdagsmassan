@@ -5,17 +5,17 @@
   "author": "Adam Bergman <adam@fransvilhelm.com> (http://fransvilhelm.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adambrgmn/piccolo/issues"
+    "url": "https://github.com/adambrgmn/onsdagsmassan/issues"
   },
-  "homepage": "https://adambrgmn.github.io/onsdagsmassan",
+  "homepage": "http://fransvilhelm.com/onsdagsmassan",
   "devDependencies": {
-    "@kadira/storybook": "^2.5.2",
     "blue-tape": "^1.0.0",
     "enzyme": "^2.4.1",
     "react-scripts": "0.6.1",
     "tape": "^4.6.2"
   },
   "dependencies": {
+    "bluebird": "^3.4.6",
     "convert-rich-text": "^2.0.2",
     "html-to-react": "^1.2.0",
     "react": "^15.3.2",
@@ -27,8 +27,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009",
-    "build-storybook": "build-storybook"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",

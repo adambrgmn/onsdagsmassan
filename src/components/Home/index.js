@@ -1,10 +1,9 @@
 import React from 'react';
 
-import image from './akvarell1.png';
+import image from '../../img/akvarell-0.png';
 import './styles.css';
 
-export default () => {
-  return (
+export default () => (
     <header className="header">
       <img className="header-img" src={image} alt="Bild av akvarell" />
       <h1 className="title">Onsdagsmässan</h1>
@@ -14,4 +13,3 @@ export default () => {
       </h2>
     </header>
   );
-};

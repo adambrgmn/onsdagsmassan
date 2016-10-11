@@ -1,4 +1,4 @@
-.aktuellt {
+.section {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -9,22 +9,25 @@
   color: #9BBCD0;
 }
 
-.aktuellt-img-container,
-.aktuellt-text-container {
+.section-column {
   width: 30rem;
 }
 
-.aktuellt-img {
+.section-reverse .section-sidebar {
+  order: 2;
+}
+
+.section-img {
   width: 100%;
 }
 
-.aktuellt-text-container h2 {
+.section-text h2 {
   font-family: 'Gill Sans', 'Cabin', sans-serif;
   font-size: 1rem;
   font-weight: 600;
 }
 
-.aktuellt-text-container p {
+.section-text p {
   font-family: 'EB Garamond', serif;
   font-size: 1rem;
 }

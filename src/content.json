@@ -1,8 +1,9 @@
 {
   "aktuellt": {
+    "layout": { "reverse": false },
     "ops": [
       {
-        "insert": "Sapientem qualisque expetendis eum"
+        "insert": "Aktuellt qualisque expetendis eum"
       },
       {
         "insert": "\n",
@@ -20,9 +21,10 @@
     ]
   },
   "information": {
+    "layout": { "reverse": true },
     "ops": [
       {
-        "insert": "Sapientem qualisque expetendis eum"
+        "insert": "Information qualisque expetendis eum"
       },
       {
         "insert": "\n",
@@ -40,10 +42,11 @@
     ]
   },
   "musik": {
+    "layout": { "reverse": false },
     "uri": "spotify:user:wilhelmochson:playlist:3TsLhxE11M6abBZd5atoEu",
     "ops": [
       {
-        "insert": "Sapientem qualisque expetendis eum"
+        "insert": "Musik qualisque expetendis eum"
       },
       {
         "insert": "\n",
