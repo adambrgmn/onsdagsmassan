@@ -1,11 +1,11 @@
-import Home from './components/Home';
+import App from './components/App';
 import Section from './components/Section';
 
 export default [
   {
     exactly: true,
     pattern: '/',
-    component: Home,
+    component: App,
     title: 'Hem',
   },
   {
