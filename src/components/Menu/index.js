@@ -5,10 +5,10 @@ import './styles.css';
 
 export default (props) => {
   const routes = [
-    { path: '/', title: 'Hem' },
-    { path: '/aktuellt', title: 'Aktuellt' },
-    { path: '/information', title: 'information' },
-    { path: '/musik', title: 'Musik' },
+    { path: '', title: 'Hem' },
+    { path: 'aktuellt', title: 'Aktuellt' },
+    { path: 'information', title: 'information' },
+    { path: 'musik', title: 'Musik' },
   ];
 
   const items = routes.map((item, i) => (
