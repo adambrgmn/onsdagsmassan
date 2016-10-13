@@ -19,8 +19,12 @@ export default class ScrollLink extends Component {
 
     if (isRelativeLink) return this.setState({ node: undefined });
 
-    const id = to.replace(/^(#)/, '');
-    const node = document.getElementById(id) || { offsetTop: 0 };
+    let node = { offsetTop: 0 };
+
+    if (to) {
+      const id = to.replace(/^(#)/, '');
+      node = document.getElementById(id);
+    }
 
     return this.setState({ node }, this.initSpring);
   }
@@ -34,7 +38,7 @@ export default class ScrollLink extends Component {
     e.preventDefault();
     if (!this.spring) return null;
 
-    const { body } = document;
+    const body = document.scrollingElement || document.documentElement;
     const { node } = this.state;
 
     const startPos = body.scrollTop;
