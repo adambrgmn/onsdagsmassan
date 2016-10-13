@@ -11,11 +11,20 @@
 
 .header-img {
   width: 25%;
+  animation-name: headerImgEntrance;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0.5s;
 }
 
 .title,
 .subtitle {
   margin: 0;
+  animation-name: titleEntrance;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
 }
 
 .title {
@@ -37,3 +46,20 @@
 
 .italic { font-style: italic; }
 .uppercase { text-transform: uppercase; }
+
+@keyframes headerImgEntrance {
+  0% {
+    opacity: 0;
+    transform: translate(-10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes titleEntrance {
+  0% { opacity: 0 }
+  100% { opacity: 1; }
+}
