@@ -63,18 +63,28 @@ export default class ScrollLink extends Component {
   }
 
   render() {
-    if (this.state.node) {
+    const { to, className } = this.props;
+    const { isRelativeLink } = this.state;
+
+    if (isRelativeLink) {
       return (
-        <a className={this.props.className} href={this.props.to} onClick={this.onClick}>
+        <Link
+          className={className}
+          to={to}
+        >
           {this.props.children}
-        </a>
-      )
+        </Link>
+      );
     }
 
     return (
-      <Link className={this.props.className} to={this.props.to}>
+      <a
+        className={this.props.className}
+        href={to}
+        onClick={this.onClick}
+      >
         {this.props.children}
-      </Link>
+      </a>
     );
   }
 }
