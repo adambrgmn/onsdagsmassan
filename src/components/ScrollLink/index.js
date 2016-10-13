@@ -59,7 +59,7 @@ export default class ScrollLink extends Component {
 
   _onClick(e) {
     e.preventDefault();
-    if (this.state.node) this.scrollTo(this.state.node.offsetTop, 2000);
+    if (this.state.node) this.scrollTo(this.state.node.offsetTop, 500);
   }
 
   render() {
