@@ -48,14 +48,14 @@ export default (
         .then(() => this.addEventListener());
     }
 
-    componentWillUnmount() { this.removeEventlistener(); }
+    componentWillUnmount() { this.removeEventListener(); }
 
     addEventListener() {
       if (window) window.addEventListener('scroll', this.onScroll);
     }
 
-    removeEventlistener() {
-      if (window) window.removeEventlistener('scroll', this.onScroll);
+    removeEventListener() {
+      if (window) window.removeEventListener('scroll', this.onScroll);
     }
 
     _setPrefs() {
