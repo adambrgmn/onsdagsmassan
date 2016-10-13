@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router';
 
+import ScrollLink from '../ScrollLink';
 import './styles.css';
 
 export default (props) => {
@@ -13,7 +13,7 @@ export default (props) => {
 
   const items = routes.map((item, i) => (
     <li key={i} className="navigation-item">
-      <Link className="navigation-link" to={item.path}>{item.title}</Link>
+      <ScrollLink className="navigation-link" to={item.path}>{item.title}</ScrollLink>
     </li>
   ));
 
