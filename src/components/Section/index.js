@@ -48,4 +48,4 @@ const Section = ({ content, pathname, reveal = 1 }) => {
 };
 
 export default Section;
-export const SectionReveal = revealer(Section, { top: 0.8, bottom: 0.8 });
+export const SectionReveal = revealer(Section, { top: 0.9, bottom: 0.7 });
