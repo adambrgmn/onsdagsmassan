@@ -1,16 +1,20 @@
 import React from 'react';
-import revealer from '../../lib/revealer';
+import getContent from '../../lib/getContent';
 
 import Home from '../Home';
-import Section from '../Section';
+import { SectionReveal } from '../Section';
 
-const SectionReveal = revealer(Section, { bottom: 0.8, top: 0.8 });
+export default () => {
+  const aktuellt = getContent('/aktuellt');
+  const information = getContent('/information');
+  const musik = getContent('/musik');
 
-export default () => (
-  <div>
-    <Home />
-    <SectionReveal pathname="/aktuellt" />
-    <SectionReveal pathname="/information" />
-    <SectionReveal pathname="/musik" />
-  </div>
-);
+  return (
+    <div>
+      <Home />
+      <SectionReveal content={aktuellt} pathname="/aktuellt" />
+      <SectionReveal content={information} pathname="/information" />
+      <SectionReveal content={musik} pathname="/musik" />
+    </div>
+  )
+};
