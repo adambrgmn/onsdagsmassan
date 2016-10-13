@@ -21,28 +21,39 @@ export default class ScrollLink extends Component {
     return this.setState({ node: { offsetTop: 0 } });
   }
 
-  scrollTo(to, time) {
-    const start = new Date().getTime();
+  scrollTo(to, duration) {
+    const scrollFallback = (cb) => setTimeout(cb, 1000 / 60);
+    const scroll = window.requestAnimationFrame ||
+      window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      scrollFallback;
+
     const from = document.body.scrollTop;
+    const distanceToScroll = to - from;
+    const isNegativeScroll = distanceToScroll < 0;
+    const step = Math.round(distanceToScroll / (duration / 60));
 
-    const timer = setInterval(() => {
-      const step = Math.min(1, (new Date().getTime() - start) / time);
-      document.body.scrollTop = (from + step * (to - from));
+    const scrollWindow = () => {
+      const currentPos = document.body.scrollTop;
+      if (
+        (isNegativeScroll && currentPos <= to) ||
+        (!isNegativeScroll && currentPos >= to)
+      ) {
+        return false;
+      }
 
-      if (step === 1) clearInterval(timer);
-    }, 25);
+      document.body.scrollTop = currentPos + step;
+      return scroll(scrollWindow);
+    };
+
+    scrollWindow();
   }
 
   _onClick(e) {
     e.preventDefault();
-
-    const { node } = this.state;
-    if (node) {
-      this.scrollTo(
-        node.offsetTop,
-        500
-      );
-    }
+    if (this.state.node) this.scrollTo(this.state.node.offsetTop, 500);
   }
 
   render() {
