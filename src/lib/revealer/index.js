@@ -83,14 +83,16 @@ export default (
       if (isBetweenFadeAreas(componentRect, breakpoints)) {
         reveal = 1;
         betweenBreakpoints = true;
-      } else if (isInBottomFadeArea(componentRect, breakpoints, windowHeight)) {
+      }
+
+      if (isInBottomFadeArea(componentRect, breakpoints, windowHeight)) {
         const distanceBetweenBreakpointAndWindow = windowHeight - breakpoints.bottom;
         const distanceToBreakpoint = componentRect.top - breakpoints.bottom;
-
         reveal = 1 - (distanceToBreakpoint / distanceBetweenBreakpointAndWindow);
-      } else if (isInTopFadeArea(componentRect, breakpoints, windowHeight)) {
-        const distanceBetweenBreakpointAndWindow = breakpoints.top;
+      }
 
+      if (isInTopFadeArea(componentRect, breakpoints, windowHeight)) {
+        const distanceBetweenBreakpointAndWindow = breakpoints.top;
         reveal = componentRect.bottom / distanceBetweenBreakpointAndWindow;
       }
 
