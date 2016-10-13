@@ -34,6 +34,7 @@ body::after {
   left: 0;
   right: 0;
   height: 1rem;
+  z-index: 1;
 }
 
 body::before { top: 0; }

@@ -8,6 +8,7 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   color: #de6f5c;
+  z-index: 1;
 }
 
 .navigation {
