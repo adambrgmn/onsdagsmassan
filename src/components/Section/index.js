@@ -1,6 +1,8 @@
 import React from 'react';
-import getContent from '../../lib/getContent';
+import classNames from 'classnames';
 import deltaToReact from '../../lib/deltaToReact';
+import revealer from '../../lib/revealer';
+import getContent from '../../lib/getContent';
 
 import Spotify from '../Spotify';
 
@@ -8,8 +10,8 @@ import akvarell1 from '../../img/akvarell-1.png';
 import akvarell2 from '../../img/akvarell-2.png';
 import './styles.css';
 
-export default ({ pathname, reveal }) => {
-  const { uri, ops, layout } = getContent(pathname);
+const Section = ({ content, pathname, reveal = 1 }) => {
+  const { uri, ops, layout } = content || getContent(pathname);
 
   const sectionTextContent = deltaToReact({ ops });
 
@@ -27,11 +29,16 @@ export default ({ pathname, reveal }) => {
     );
   };
 
-  const sectionClassName = layout.reverse ? 'section section-reverse' : 'section';
-  const sectionOpacity = reveal ? Number(reveal.toFixed(2)) : 1;
+  const sectionOpacity = Number(reveal.toFixed(2));
+  const sectionName = pathname.replace('/', '');
+  const cx = {
+    section: true,
+    'section-reverse': layout.reverse,
+    [`section-${sectionName}`]: true,
+  }
 
   return (
-    <div className={sectionClassName} style={{ opacity: sectionOpacity }}>
+    <div id={sectionName} className={classNames(cx)} style={{ opacity: sectionOpacity }}>
       {sectionSidebar()}
       <div className="section-text section-column">
         {sectionTextContent}
@@ -39,3 +46,6 @@ export default ({ pathname, reveal }) => {
     </div>
   );
 };
+
+export default Section;
+export const SectionReveal = revealer(Section, { top: 0.8, bottom: 0.8 });
