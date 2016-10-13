@@ -2,6 +2,7 @@ import React from 'react';
 import getContent from '../../lib/getContent';
 
 import Home from '../Home';
+import Footer from '../Footer';
 import { SectionReveal } from '../Section';
 
 export default () => {
@@ -15,6 +16,7 @@ export default () => {
       <SectionReveal content={aktuellt} pathname="/aktuellt" />
       <SectionReveal content={information} pathname="/information" />
       <SectionReveal content={musik} pathname="/musik" />
+      <Footer />
     </div>
   )
 };
