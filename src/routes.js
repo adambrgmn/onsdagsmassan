@@ -9,7 +9,15 @@ export default [
     title: 'Hem',
   },
   {
-    pattern: '/:section',
+    pattern: '/aktuellt',
+    component: Section,
+  },
+  {
+    pattern: '/information',
+    component: Section,
+  },
+  {
+    pattern: '/musik',
     component: Section,
   },
 ];
