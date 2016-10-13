@@ -32,6 +32,11 @@ export default (
   };
 
   class Reveal extends React.Component {
+    shouldComponentUpdate() {
+      const { betweenBreakpoints } = this.state;
+      return !betweenBreakpoints;
+    }
+
     constructor(props) {
       super(props);
       this.state = {
