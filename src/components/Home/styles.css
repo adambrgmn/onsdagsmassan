@@ -44,9 +44,6 @@
   letter-spacing: 3px;
 }
 
-.italic { font-style: italic; }
-.uppercase { text-transform: uppercase; }
-
 @keyframes headerImgEntrance {
   0% {
     opacity: 0;

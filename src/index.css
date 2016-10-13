@@ -39,3 +39,6 @@ body::after {
 
 body::before { top: 0; }
 body::after { bottom: 0; }
+
+.italic { font-style: italic; }
+.uppercase { text-transform: uppercase; }
