@@ -21,7 +21,8 @@
     "html-to-react": "^1.2.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-router": "^4.0.0-alpha.4"
+    "react-router": "^4.0.0-alpha.4",
+    "rebound": "0.0.13"
   },
   "scripts": {
     "start": "react-scripts start",
