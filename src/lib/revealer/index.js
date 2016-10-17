@@ -10,15 +10,9 @@ export default (Component) => {
 
     componentDidMount() {
       const target = this.wrappedComponent;
-      this.interObs = interObs(target, (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.target === target && entry.intersectionRatio >= 0.5) {
-            this.setState({ inView: true });
-          }
-
-          if (entry.target === target && entry.intersectionRatio < 0.5) {
-            this.setState({ inView: false });
-          }
+      this.interObs = interObs(target, ({ intersectionRatio }) => {
+        this.setState({
+          inView: intersectionRatio > 0,
         });
       });
     }
