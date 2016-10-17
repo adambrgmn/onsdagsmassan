@@ -1,25 +1,42 @@
-let callbacks = [];
+import stampit from 'stampit';
 
-const callback = (...args) => {
-  if (callbacks) callbacks.forEach(cb => cb(...args));
-};
+const Callbacks = stampit()
+  .props({
+    callbacks: [],
+  })
+  .methods({
+    add({ target, cb }) {
+      if (typeof cb !== 'function') {
+        throw new Error('observer: provided callback must be a function');
+      }
 
-const options = { threshold: 0.5 };
+      this.callbacks = [...this.callbacks, { target, cb }];
+    },
+    remove(cb) {
+      this.callbacks = this.callbacks.filter((callback) => callback.cb !== cb);
+    },
+    run(entries) {
+      entries.forEach((entry) => {
+        const { cb } = this.callbacks.find((callback) => callback.target === entry.target);
+        if (cb) cb(entry);
+      });
+    },
+  });
 
-const io = new IntersectionObserver(callback, options);
+
+let callbacks = Callbacks();
+
+const io = new IntersectionObserver(
+  (entries) => callbacks.run(entries),
+  { rootMargin: '-35% 0% -35% 0%' }
+);
 
 export default (target, cb) => {
   io.observe(target);
-
-  if (typeof cb !== 'function') {
-    const e = new Error('interObs: Provided callback must be a function');
-    throw e;
-  }
-
-  callbacks = [...callbacks, cb];
+  callbacks.add({target, cb });
 
   return () => {
     io.unobserve(target);
-    callbacks = callbacks.filter((fn) => fn !== cb);
+    callbacks.remove(cb);
   };
 };
