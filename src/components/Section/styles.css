@@ -7,6 +7,8 @@
   min-height: 100vh;
   padding: 2rem;
   color: #9BBCD0;
+  opacity: 0;
+  transition: opacity 0.5s;
 }
 
 .section-column {
@@ -35,15 +37,18 @@
 .section-sidebar {
   opacity: 0;
   transform: translate(-20%, 0);
-  animation-name: sidebarEntrance;
-  animation-duration: 1s;
-  animation-fill-mode: both;
-  animation-timing-function: ease-in-out;
+  transition: opacity 1s, transform 1s ease-in-out;
 }
 
-@keyframes sidebarEntrance {
-  100% {
-    opacity: 1;
-    transform: translate(0, 0);
-  }
+.section-reverse .section-sidebar {
+  transform: translate(20%, 0);
+}
+
+.section.section-in-view {
+  opacity: 1;
+}
+
+.section.section-in-view .section-sidebar {
+  opacity: 1;
+  transform: translate(0, 0);
 }
