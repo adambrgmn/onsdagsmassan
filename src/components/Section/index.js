@@ -10,7 +10,7 @@ import akvarell1 from '../../img/akvarell-1.png';
 import akvarell2 from '../../img/akvarell-2.png';
 import './styles.css';
 
-const Section = ({ content, pathname, reveal = 1 }) => {
+const Section = ({ content, pathname, inView = true }) => {
   const { uri, ops, layout } = content || getContent(pathname);
 
   const sectionTextContent = deltaToReact({ ops });
@@ -29,16 +29,16 @@ const Section = ({ content, pathname, reveal = 1 }) => {
     );
   };
 
-  const sectionOpacity = Number(reveal.toFixed(2));
   const sectionName = pathname.replace('/', '');
   const cx = {
     section: true,
     'section-reverse': layout.reverse,
     [`section-${sectionName}`]: true,
+    'section-in-view': inView,
   }
 
   return (
-    <div id={sectionName} className={classNames(cx)} style={{ opacity: sectionOpacity }}>
+    <div id={sectionName} className={classNames(cx)}>
       {sectionSidebar()}
       <div className="section-text section-column">
         {sectionTextContent}
@@ -48,4 +48,4 @@ const Section = ({ content, pathname, reveal = 1 }) => {
 };
 
 export default Section;
-export const SectionReveal = revealer(Section, { top: 0.9, bottom: 0.7 });
+export const SectionReveal = revealer(Section);
