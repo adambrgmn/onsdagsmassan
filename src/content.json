@@ -1,6 +1,6 @@
 {
   "aktuellt": {
-    "layout": { "reverse": false },
+    "layout": {},
     "ops": [
       {
         "insert": "Aktuellt qualisque expetendis eum"
@@ -42,8 +42,8 @@
     ]
   },
   "musik": {
-    "layout": { "reverse": false },
-    "uri": "spotify:user:wilhelmochson:playlist:3TsLhxE11M6abBZd5atoEu",
+    "layout": {},
+    "uri": "spotify:user:onsdagsm%C3%A4ssan:playlist:4dDDM2RIVweg1Smi9GemJY",
     "ops": [
       {
         "insert": "Musik qualisque expetendis eum"
