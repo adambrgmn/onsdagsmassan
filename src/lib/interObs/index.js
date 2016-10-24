@@ -24,7 +24,7 @@ const Callbacks = stampit()
   });
 
 
-let callbacks = Callbacks();
+const callbacks = Callbacks();
 
 const io = new IntersectionObserver(
   (entries) => callbacks.run(entries),
@@ -33,7 +33,7 @@ const io = new IntersectionObserver(
 
 export default (target, cb) => {
   io.observe(target);
-  callbacks.add({target, cb });
+  callbacks.add({ target, cb });
 
   return () => {
     io.unobserve(target);

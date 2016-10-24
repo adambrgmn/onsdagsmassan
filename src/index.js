@@ -1,22 +1,16 @@
-import 'intersection-observer';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter, Match } from 'react-router';
+import { render } from 'react-dom';
 
 import Menu from './components/Menu';
-import routes from './routes';
+import App from './components/App';
 
 import bg from './img/bg.jpg';
-import './index.css';
+import './styles.scss';
 
-const basename = process.env.NODE_ENV !== 'production' ? undefined : '/onsdagsmassan';
-
-ReactDOM.render(
-  <BrowserRouter basename={basename}>
-    <div className="container" style={{ backgroundImage: `url(${bg})`}}>
-      <Menu />
-      {routes.map((route, i) => <Match key={i} {...route} />)}
-    </div>
-  </BrowserRouter>,
+render(
+  <div className="container" style={{ backgroundImage: `url(${bg})` }}>
+    <Menu />
+    <App />
+  </div>,
   document.getElementById('root')
 );

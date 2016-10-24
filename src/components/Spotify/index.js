@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { format } from 'url';
 
-export default ({ uri }) => {
+export default function Spotify({ uri }) {
   const src = format({
     protocol: 'https',
     hostname: 'embed.spotify.com/',
     query: {
       theme: 'white',
       uri,
-    }
+    },
   });
 
   return (
@@ -21,3 +21,7 @@ export default ({ uri }) => {
     />
   );
 }
+
+Spotify.propTypes = {
+  uri: PropTypes.string,
+};

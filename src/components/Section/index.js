@@ -1,17 +1,14 @@
-import React from 'react';
-import classNames from 'classnames';
+import React, { PropTypes } from 'react';
 import deltaToReact from '../../lib/deltaToReact';
-import revealer from '../../lib/revealer';
 import getContent from '../../lib/getContent';
 
 import Spotify from '../Spotify';
 
 import akvarell1 from '../../img/akvarell-1.png';
 import akvarell2 from '../../img/akvarell-2.png';
-import './styles.css';
 
-const Section = ({ content, pathname, inView = true }) => {
-  const { uri, ops, layout } = content || getContent(pathname);
+const Section = ({ content, pathname }) => {
+  const { uri, ops } = content || getContent(pathname);
 
   const sectionTextContent = deltaToReact({ ops });
 
@@ -20,32 +17,32 @@ const Section = ({ content, pathname, inView = true }) => {
     const int = pathname === '/aktuellt' ? 0 : 1;
 
     return (
-      <div className="section-sidebar section-column">
-        {uri ?
-          <Spotify uri={uri} /> :
-          <img className="section-img" src={images[int]} alt="Bild av akvarell" />
+      <div>
+        {uri
+          ? <Spotify uri={uri} />
+          : <img src={images[int]} alt="Bild av akvarell" />
         }
       </div>
     );
   };
 
-  const sectionName = pathname.replace('/', '');
-  const cx = {
-    section: true,
-    'section-reverse': layout.reverse,
-    [`section-${sectionName}`]: true,
-    'section-in-view': inView,
-  }
-
   return (
-    <div id={sectionName} className={classNames(cx)}>
+    <div>
       {sectionSidebar()}
-      <div className="section-text section-column">
+      <div>
         {sectionTextContent}
       </div>
     </div>
   );
 };
 
+Section.propTypes = {
+  content: PropTypes.shape({
+    layout: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
+    ops: PropTypes.array, // eslint-disable-line react/no-unused-prop-types
+    uri: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  }),
+  pathname: PropTypes.string,
+};
+
 export default Section;
-export const SectionReveal = revealer(Section);
