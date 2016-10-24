@@ -9,8 +9,8 @@ export default class ScrollLink extends Component {
       isRelativeLink: this.props.to.indexOf('/') > -1,
     };
 
-    this.onClick = this._onClick.bind(this);
-    this.initSpring = this._initSpring.bind(this);
+    this.onClick = this.onClick.bind(this);
+    this.initSpring = this.initSpring.bind(this);
   }
 
   componentDidMount() {
@@ -29,12 +29,7 @@ export default class ScrollLink extends Component {
     return this.setState({ node }, this.initSpring);
   }
 
-  _initSpring() {
-    this.springSystem = new SpringSystem();
-    this.spring = this.springSystem.createSpring(10, 4);
-  }
-
-  _onClick(e) {
+  onClick(e) {
     e.preventDefault();
     if (!this.spring) return null;
 
@@ -64,10 +59,15 @@ export default class ScrollLink extends Component {
           this.spring.removeAllListeners();
           this.spring.setEndValue(0);
         }
-      }
+      },
     });
 
     return this.spring.setEndValue(1);
+  }
+
+  initSpring() {
+    this.springSystem = new SpringSystem();
+    this.spring = this.springSystem.createSpring(10, 4);
   }
 
   render() {

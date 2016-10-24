@@ -1,9 +1,8 @@
 import React from 'react';
 
 import ScrollLink from '../ScrollLink';
-import './styles.css';
 
-export default (props) => {
+export default () => {
   const routes = [
     { path: '', title: 'Hem' },
     { path: 'aktuellt', title: 'Aktuellt' },
@@ -12,14 +11,14 @@ export default (props) => {
   ];
 
   const items = routes.map((item, i) => (
-    <li key={i} className="navigation-item">
-      <ScrollLink className="navigation-link" to={item.path}>{item.title}</ScrollLink>
+    <li key={i}>
+      <ScrollLink to={item.path}>{item.title}</ScrollLink>
     </li>
   ));
 
   return (
-    <nav className="menu">
-      <ul className="navigation">
+    <nav>
+      <ul>
         {items}
       </ul>
     </nav>

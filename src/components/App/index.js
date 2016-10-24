@@ -3,7 +3,7 @@ import getContent from '../../lib/getContent';
 
 import Home from '../Home';
 import Footer from '../Footer';
-import { SectionReveal } from '../Section';
+import Section from '../Section';
 
 export default () => {
   const aktuellt = getContent('/aktuellt');
@@ -13,10 +13,10 @@ export default () => {
   return (
     <div>
       <Home />
-      <SectionReveal content={aktuellt} pathname="/aktuellt" />
-      <SectionReveal content={information} pathname="/information" />
-      <SectionReveal content={musik} pathname="/musik" />
+      <Section content={aktuellt} pathname="/aktuellt" />
+      <Section content={information} pathname="/information" />
+      <Section content={musik} pathname="/musik" />
       <Footer />
     </div>
-  )
+  );
 };

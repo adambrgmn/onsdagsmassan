@@ -23,7 +23,7 @@ export default (Component) => {
 
     render() {
       return (
-        <div ref={(ref) => this.wrappedComponent = ref}>
+        <div ref={(ref) => (this.wrappedComponent = ref)}>
           <Component
             inView={this.state.inView}
             {...this.props}
@@ -34,4 +34,4 @@ export default (Component) => {
   }
 
   return Reveal;
-}
+};
