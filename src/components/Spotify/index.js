@@ -14,7 +14,7 @@ export default function Spotify({ uri }) {
   return (
     <iframe
       src={src}
-      width="300"
+      width="256"
       height="380"
       frameBorder="0"
       allowTransparency="true"

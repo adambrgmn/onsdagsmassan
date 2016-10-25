@@ -1,12 +1,16 @@
 import React from 'react';
 
+import s from './styles.scss';
+
 export default () => (
-  <footer>
-    <div>
-      <span>Onsdagsmässan</span>
+  <footer className={s.footer}>
+    <div className={s.footerLeft}>
+      <span className="uppercase">Onsdagsmässan</span>
     </div>
-    <div>
+
+    <div className={s.footerMiddle}>
       <svg
+        className={s.footerSvg}
         viewBox="0 0 50 78"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -15,8 +19,9 @@ export default () => (
         />
       </svg>
     </div>
-    <div>
-      <span>St</span> <span>Andrew&apos;s Church</span>
+
+    <div className={s.footerRight}>
+      <span className="italic">St</span> <span className="uppercase">Andrew&apos;s Church</span>
     </div>
   </footer>
 );

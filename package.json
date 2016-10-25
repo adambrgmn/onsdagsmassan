@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "HOST=0.0.0.0 webpack-dev-server",
     "build": "webpack",
     "build:stats": "webpack --profile --json > stats.json",
     "test": "tape -r ./test/setup.js 'test/**/*.spec.js' | tap-spec --color",
@@ -30,6 +30,7 @@
     "convert-rich-text": "^2.0.2",
     "html-to-react": "^1.2.1",
     "intersection-observer": "^0.1.1",
+    "normalize-scss": "^6.0.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",

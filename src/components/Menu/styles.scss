@@ -1,1 +1,122 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
+
+.menu {
+  width: calc(100% - 2rem);
+  position: fixed;
+  top: calc(-145px + 1rem);
+  padding-top: 1rem;
+  font-family: $font-sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: $color-second;
+  background: url('../../img/bg.jpg');
+  z-index: 1;
+  transition: top 0.3s ease-in-out;
+
+  &.show {
+    top: 0;
+  }
+
+  @include media-tablet {
+    top: 0;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.menuContainer {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menuItem {
+  display: block;
+  padding: 0.25rem 0;
+
+  &::before,
+  &::after {
+    content: '∙';
+    margin-right: 0.75rem;
+    margin-left: 0.75rem;
+    font-weight: bold;
+  }
+
+  @include media-tablet {
+    display: inline-block;
+    margin-right: 1rem;
+
+    &::after {
+      content: none;
+    }
+
+    &::before,
+    &:last-child::after {
+      margin-left: 0;
+    }
+
+    &:last-child::after {
+      content: '∙';
+      margin-left: 0.75rem;
+    }
+  }
+}
+
+.menuItemLink {
+  color: $color-second;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    filter: darken($color-second, 30%);
+  }
+}
+
+.showMenuContainer {
+  background: $color-main;
+
+  @include media-tablet {
+    display: none;
+  }
+}
+
+.showMenu {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  margin: 0.5rem auto 0;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.menuIcon,
+.menuIcon::before,
+.menuIcon::after {
+  position: absolute;
+  width: 1rem;
+  height: 1px;
+  background-color: currentColor;
+}
+
+.menuIcon {
+  color: $color-second;
+
+  &::before,
+  &::after {
+    content: '';
+    left: 0;
+  }
+
+  &::before {
+    top: -0.25rem;
+  }
+
+  &::after {
+    top: 0.25rem;
+  }
+}

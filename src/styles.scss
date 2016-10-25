@@ -1,4 +1,6 @@
 @import './styles/variables';
+@import './styles/mixins';
+@import '~normalize-scss/sass/normalize/import-now';
 
 *,
 *::before,
@@ -7,7 +9,7 @@
 }
 
 html {
-  font-size: 16px;
+  font-size: $font-base;
 }
 
 body {
@@ -16,21 +18,34 @@ body {
   font-family: $font-sans-serif;
   border-left: 1rem solid $color-main;
   border-right: 1rem solid $color-main;
+
+  &::before,
+  &::after {
+    content: '';
+    position: fixed;
+    background: $color-main;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    z-index: 1;
+  }
+
+  &::before {
+    top: 0;
+
+    @include media-tablet {
+      z-index: 2;
+    }
+  }
+
+  &::after {
+    bottom: 0;
+  }
 }
 
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  background: $color-main;
-  left: 0;
-  right: 0;
-  height: 1rem;
-  z-index: 1;
+:global(.container) {
+  background: url('./img/bg.jpg');
 }
-
-body::before { top: 0; }
-body::after { bottom: 0; }
 
 :global(.italic) { font-style: italic; }
 :global(.uppercase) { text-transform: uppercase; }

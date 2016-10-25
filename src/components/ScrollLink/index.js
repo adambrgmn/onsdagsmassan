@@ -1,8 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { SpringSystem } from 'rebound';
 
 export default class ScrollLink extends Component {
+  static propTypes = {
+    to: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    children: PropTypes.string,
+    onClick: PropTypes.func,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -10,27 +17,15 @@ export default class ScrollLink extends Component {
     };
 
     this.onClick = this.onClick.bind(this);
+    this.onMount = this.onMount.bind(this);
     this.initSpring = this.initSpring.bind(this);
   }
 
-  componentDidMount() {
-    const { to } = this.props;
-    const { isRelativeLink } = this.state;
-
-    if (isRelativeLink) return this.setState({ node: undefined });
-
-    let node = { offsetTop: 0 };
-
-    if (to) {
-      const id = to.replace(/^(#)/, '');
-      node = document.getElementById(id);
-    }
-
-    return this.setState({ node }, this.initSpring);
-  }
+  componentDidMount() { this.onMount(); }
 
   onClick(e) {
     e.preventDefault();
+    this.props.onClick();
     if (!this.spring) return null;
 
     const body = document.scrollingElement || document.documentElement;
@@ -63,6 +58,22 @@ export default class ScrollLink extends Component {
     });
 
     return this.spring.setEndValue(1);
+  }
+
+  onMount() {
+    const { to } = this.props;
+    const { isRelativeLink } = this.state;
+
+    if (isRelativeLink) return this.setState({ node: undefined });
+
+    let node = { offsetTop: 0 };
+
+    if (to) {
+      const id = to.replace(/^(#)/, '');
+      node = document.getElementById(id);
+    }
+
+    return this.setState({ node }, this.initSpring);
   }
 
   initSpring() {
