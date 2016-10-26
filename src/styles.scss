@@ -43,9 +43,5 @@ body {
   }
 }
 
-:global(.container) {
-  background: url('./img/bg.jpg');
-}
-
 :global(.italic) { font-style: italic; }
 :global(.uppercase) { text-transform: uppercase; }
