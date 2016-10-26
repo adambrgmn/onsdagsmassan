@@ -1,13 +1,36 @@
+import path from 'path';
+import url from 'url';
 import merge from 'webpack-merge';
 import validate from 'webpack-validator';
 
+import packageJson from './package.json';
 import * as parts from './webpack/parts';
 import PATHS from './webpack/paths';
+
+import build from './webpack.config.prod';
+import dev from './webpack.config.dev';
 
 const TARGET = process.env.npm_lifecycle_event;
 const ENABLE_POLLING = process.env.ENABLE_POLLING;
 
 process.env.BABEL_ENV = TARGET;
+
+const ensureSlash = (p, needsSlash) => {
+  const hasSlash = p.endsWith('/');
+
+  if (hasSlash && !needsSlash) {
+    return p.substr(p, p.length - 1);
+  } else if (!hasSlash && needsSlash) {
+    return `${p}/`;
+  }
+
+  return p;
+};
+
+const homepagePath = packageJson.homepage;
+const homepagePathname = homepagePath ? url.parse(homepagePath).pathname : '/';
+const publicPath = ensureSlash(homepagePathname, true);
+const publicUrl = ensureSlash(homepagePathname, false);
 
 const common = merge(
   {
@@ -20,7 +43,7 @@ const common = merge(
       publicPath: '/',
     },
     resolve: {
-      extensions: ['', '.js', '.jsx'],
+      extensions: ['', '.js', '.json', '.jsx'],
       alias: {
         'babel-runtime/regenerator': require.resolve('babel-runtime/regenerator'),
       },
@@ -41,27 +64,29 @@ let config;
 switch (TARGET) {
   case 'build':
   case 'build:stats':
-    config = merge(
-      common,
-      {
-        devtool: 'source-map',
-        output: {
-          path: PATHS.build,
-          filename: '[name].[chunkhash].js',
-          chunkFilename: '[chunkhash].js',
-        },
-      },
-      parts.loadImagesBuild(PATHS.app),
-      parts.clean(PATHS.build),
-      parts.setFreeVariable('process.env.NODE_ENV', 'production'),
-      parts.minify(),
-      parts.extractCss(PATHS.app),
-      parts.extractBundle({
-        name: 'vendor',
-        entries: ['react', 'react-dom'],
-      }),
-      parts.setupProduction()
-    );
+    config = build;
+    // config = merge(
+    //   common,
+    //   {
+    //     devtool: 'source-map',
+    //     output: {
+    //       path: PATHS.build,
+    //       filename: 'static/js/[name].[chunkhash].js',
+    //       chunkFilename: 'static/js/[name].[chunkhash].chunk.js',
+    //       publicPath,
+    //     },
+    //   },
+    //   parts.loadImagesBuild(PATHS.app),
+    //   parts.clean(PATHS.build),
+    //   parts.setFreeVariable('process.env.NODE_ENV', 'production'),
+    //   parts.minify(),
+    //   parts.extractCss(PATHS.app),
+    //   parts.extractBundle({
+    //     name: 'vendor',
+    //     entries: ['react', 'react-dom'],
+    //   }),
+    //   parts.setupProduction()
+    // );
 
     break;
 

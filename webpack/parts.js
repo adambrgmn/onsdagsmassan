@@ -137,7 +137,7 @@ export const extractCss = (include) => ({
     ],
   },
   plugins: [
-    new ExtractTextPlugin('[name].[chunkhash].css'),
+    new ExtractTextPlugin('static/css/[name].[chunkhash].css'),
   ],
 });
 

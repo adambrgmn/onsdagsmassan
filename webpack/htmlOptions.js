@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   mobile: true,
   inject: false,
   chunksSortMode: 'dependency',
