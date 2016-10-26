@@ -6,24 +6,23 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 
-const PATHS = require('./webpack/paths');
-const getClientEnvironment = require('./webpack/env');
-const packageJson = require('./package.json');
+const PATHS = require('./paths');
+const getClientEnvironment = require('../helpers/env');
+const { homepage } = require('../../package');
 
-const ensureSlash = (p, needsSlash) => {
-  const hasSlash = p.endsWith('/');
+const ensureSlash = (path, needsSlash) => {
+  const hasSlash = path.endsWith('/');
 
   if (hasSlash && !needsSlash) {
-    return p.substr(p, p.length - 1);
+    return path.substr(path, path.length - 1);
   } else if (!hasSlash && needsSlash) {
-    return `${p}/`;
+    return `${path}/`;
   }
 
-  return p;
+  return path;
 };
 
-const homepagePath = packageJson.homepage;
-const homepagePathname = homepagePath ? url.parse(homepagePath).pathname : '/';
+const homepagePathname = homepage ? url.parse(homepage).pathname : '/';
 const publicPath = ensureSlash(homepagePathname, true);
 const publicUrl = ensureSlash(homepagePathname, false);
 const env = getClientEnvironment(publicUrl);
@@ -32,31 +31,31 @@ module.exports = {
   bail: true,
   devtool: 'source-map',
   entry: [
-    require.resolve('./webpack/polyfills'),
-    PATHS.app,
+    require.resolve('./polyfills'),
+    PATHS.appIndexJs,
   ],
   output: {
-    path: PATHS.build,
+    path: PATHS.appBuild,
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     publicPath,
   },
   resolve: {
+    fallback: PATHS.nodePaths,
     extensions: ['.js', '.json', '.jsx', ''],
   },
   module: {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        include: PATHS.app,
-        loader: 'babel?cacheDirectory',
+        include: PATHS.appSrc,
+        loader: 'babel',
       },
       {
         test: /\.(scss|css)$/,
-        include: [PATHS.app, 'node_modules'],
         loader: ExtractTextPlugin.extract(
           'style',
-          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!resolve-url!sass' // eslint-disable-line max-len
+          'css?sourceMap&modules&importLoaders=1&-autoprefixer!postcss!resolve-url!sass?sourceMap' // eslint-disable-line max-len
         ),
       },
       {
@@ -94,7 +93,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: PATHS.html,
+      template: PATHS.appHtml,
       minify: {
         removeComments: true,
         collapseWhitespace: true,

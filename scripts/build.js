@@ -10,11 +10,11 @@ const webpack = require('webpack');
 const recursive = require('recursive-readdir');
 const stripAnsi = require('strip-ansi');
 
-const config = require('../webpack.config.prod');
-const PATHS = require('../webpack/paths');
+const config = require('./config/prod');
+const PATHS = require('./config/paths');
 
 const removeFileNameHash = (fileName) => fileName
-    .replace(PATHS.build, '')
+    .replace(PATHS.appBuild, '')
     .replace(/\/?(.*)(\.\w+)(\.js|\.css)/, (match, p1, p2, p3) => p1 + p3);
 
 const getDifferenceLabel = (currentSize, previousSize) => {
@@ -37,7 +37,7 @@ const printFileSizes = (stats, previousSizeMap) => {
   const assets = stats.toJson().assets
     .filter((asset) => /\.(js|css)$/.test(asset.name))
     .map((asset) => {
-      const fileContents = fs.readFileSync(`${PATHS.build}/${asset.name}`);
+      const fileContents = fs.readFileSync(`${PATHS.appBuild}/${asset.name}`);
       const size = gzipSize(fileContents);
       const previousSize = previousSizeMap[removeFileNameHash(asset.name)];
       const diff = getDifferenceLabel(size, previousSize);
@@ -104,13 +104,13 @@ const build = (previousSizeMap) => {
 };
 
 const copyPublicFolder = () => {
-  fs.copySync(PATHS.public, PATHS.build, {
+  fs.copySync(PATHS.appPublic, PATHS.appBuild, {
     dereference: true,
-    filter: (file) => file !== PATHS.html,
+    filter: (file) => file !== PATHS.appHtml,
   });
 };
 
-recursive(PATHS.build, (err, fileNames) => {
+recursive(PATHS.appBuild, (err, fileNames) => {
   const previousSizeMap = (fileNames || [])
     .filter((fileName) => /\.(js|css)$/.test(fileName))
     .reduce((memo, fileName) => {
@@ -122,7 +122,7 @@ recursive(PATHS.build, (err, fileNames) => {
       });
     }, {});
 
-  rimrafSync(`${PATHS.build}/*`);
+  rimrafSync(`${PATHS.appBuild}/*`);
 
   build(previousSizeMap);
   copyPublicFolder();
