@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import s from './styles.scss';
+import bg from '../../img/bg.jpg';
 
 import ScrollLink from '../ScrollLink';
 
@@ -44,7 +45,7 @@ export default class Menu extends Component {
     };
 
     return (
-      <nav className={classNames(cx)}>
+      <nav className={classNames(cx)} style={{ background: `url(${bg})` }}>
         <ul className={s.menuContainer}>
           {items}
         </ul>
