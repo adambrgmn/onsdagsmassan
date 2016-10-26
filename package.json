@@ -55,8 +55,6 @@
     "blue-tape": "^1.0.0",
     "case-sensitive-paths-webpack-plugin": "^1.1.4",
     "chalk": "^1.1.3",
-    "chunk-manifest-webpack-plugin": "^0.1.0",
-    "clean-webpack-plugin": "^0.1.13",
     "connect-history-api-fallback": "^1.3.0",
     "css-loader": "^0.25.0",
     "css-modules-require-hook": "^4.0.5",
@@ -76,8 +74,6 @@
     "gzip-size": "^3.0.0",
     "html-webpack-plugin": "^2.24.0",
     "http-proxy-middleware": "^0.17.2",
-    "image-webpack-loader": "^3.0.0",
-    "inline-manifest-webpack-plugin": "^3.0.1",
     "jsdom": "^9.8.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.10.1",
@@ -101,9 +97,6 @@
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2",
     "webpack-manifest-plugin": "^1.1.0",
-    "webpack-md5-hash": "^0.0.5",
-    "webpack-merge": "^0.15.0",
-    "webpack-validator": "^2.2.9",
     "whatwg-fetch": "^1.0.0"
   }
 }
