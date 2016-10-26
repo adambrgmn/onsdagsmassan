@@ -45,7 +45,7 @@ export default class Menu extends Component {
     };
 
     return (
-      <nav className={classNames(cx)} style={{ background: `url(${bg})` }}>
+      <nav className={classNames(cx)}>
         <ul className={s.menuContainer}>
           {items}
         </ul>
