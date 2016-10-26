@@ -1,47 +1,4 @@
 @import './styles/variables';
 @import './styles/mixins';
 @import '~normalize-scss/sass/normalize/import-now';
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html {
-  font-size: $font-base;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $font-sans-serif;
-  border-left: 1rem solid $color-main;
-  border-right: 1rem solid $color-main;
-
-  &::before,
-  &::after {
-    content: '';
-    position: fixed;
-    background: $color-main;
-    left: 0;
-    right: 0;
-    height: 1rem;
-    z-index: 1;
-  }
-
-  &::before {
-    top: 0;
-
-    @include media-tablet {
-      z-index: 2;
-    }
-  }
-
-  &::after {
-    bottom: 0;
-  }
-}
-
-:global(.italic) { font-style: italic; }
-:global(.uppercase) { text-transform: uppercase; }
+@import './styles/base';
