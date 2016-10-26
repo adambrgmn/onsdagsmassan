@@ -17,7 +17,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "tape -r ./test/setup.js 'test/**/*.spec.js' | tap-spec --color",
     "predeploy": "npm run build",
