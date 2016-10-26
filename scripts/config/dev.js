@@ -4,9 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
-const getClientEnvironment = require('./webpack/env');
 
-const PATHS = require('./webpack/paths');
+const getClientEnvironment = require('../helpers/env');
+const PATHS = require('./paths');
 
 const publicPath = '/';
 const publicUrl = '';
@@ -15,38 +15,34 @@ const env = getClientEnvironment(publicUrl);
 module.exports = {
   devtool: 'eval',
   entry: [
-    'react-dev-utils/webpackHotDevClient',
-    'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
-    './webpack/polyfills',
-    PATHS.appIndex,
+    'react-dev-utils/webpackHotDevClient',
+    PATHS.appPolyfills,
+    PATHS.appIndexJs,
   ],
   output: {
-    path: PATHS.build,
+    path: PATHS.appBuild,
     pathinfo: true,
     filename: 'static/js/bundle.js',
     publicPath,
   },
   resolve: {
+    fallback: PATHS.nodePaths,
     extensions: ['.js', '.json', '.jsx', ''],
   },
   module: {
     loaders: [
       {
         test: /\.(js|jsx)$/,
-        include: PATHS.app,
-        loaders: ['babel'],
+        loader: 'babel',
+        include: PATHS.appSrc,
+        query: {
+          cacheDirectory: true,
+        },
       },
       {
         test: /\.(scss|css)$/,
-        loaders: [
-          'style?sourceMap',
-          'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
-          'postcss?sourceMap',
-          'resolve-url',
-          'sass?sourceMap',
-        ],
-        include: [PATHS.app, PATHS.nodeModules],
+        loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]!postcss!resolve-url?sourceMap!sass?sourceMap',
       },
       {
         test: /\.json$/,
@@ -83,12 +79,12 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: PATHS.html,
+      template: PATHS.appHtml,
     }),
     new webpack.DefinePlugin(env),
     new webpack.HotModuleReplacementPlugin(),
     new CaseSensitivePathsPlugin(),
-    new WatchMissingNodeModulesPlugin(PATHS.nodeModules),
+    new WatchMissingNodeModulesPlugin(PATHS.appNodeModules),
   ],
   node: {
     fs: 'empty',
