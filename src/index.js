@@ -1,15 +1,28 @@
+// @flow
+
 import React from 'react';
 import { render } from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
 
+import App from './components/App';
 import './styles.scss';
 
-import Menu from './components/Menu';
-import App from './components/App';
+const root = document.getElementById('root');
 
-render(
-  <div className="container">
-    <Menu />
-    <App />
-  </div>,
-  document.getElementById('root')
-);
+const renderWithHotReload = (RootElement: ReactClass<{}>) => {
+  render(
+    <AppContainer>
+      <RootElement />
+    </AppContainer>,
+    root
+  );
+};
+
+renderWithHotReload(App);
+
+if (module.hot) {
+  module.hot.accept('./components/App', () => {
+    const NextApp = require('./components/App').default; // eslint-disable-line
+    renderWithHotReload(NextApp);
+  });
+}

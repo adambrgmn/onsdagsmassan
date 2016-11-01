@@ -13,9 +13,7 @@
     "max-nesting-depth": [3, {
       "ignore": "at-rules-without-declaration-blocks"
     }],
-    "selector-pseudo-class-no-unknown": [true, {
-      "ignorePseudoClasses": ["global", "local"]
-    }],
+    "selector-pseudo-class-no-unknown": ["global", "local"],
     "selector-max-compound-selectors": 3,
     "selector-max-specificity": "0,3,0",
     "at-rule-no-unknown": [true, {

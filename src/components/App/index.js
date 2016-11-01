@@ -1,6 +1,7 @@
 import React from 'react';
 import getContent from '../../lib/getContent';
 
+import Menu from '../Menu';
 import Home from '../Home';
 import Footer from '../Footer';
 import Section from '../Section';
@@ -11,7 +12,8 @@ export default () => {
   const musik = getContent('/musik');
 
   return (
-    <div>
+    <div className="container">
+      <Menu />
       <Home />
       <Section content={aktuellt} pathname="/aktuellt" />
       <Section content={information} pathname="/information" />
