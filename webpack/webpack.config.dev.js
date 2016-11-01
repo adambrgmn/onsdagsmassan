@@ -1,29 +1,31 @@
-const autoprefixer = require('autoprefixer');
+const path = require('path');
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 
-const getClientEnvironment = require('../helpers/env');
+const { getClientEnvironment } = require('./utils');
 const PATHS = require('./paths');
 
 const publicPath = '/';
 const publicUrl = '';
+const staticDir = 'static';
 const env = getClientEnvironment(publicUrl);
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'react-hot-loader/patch',
-    'react-dev-utils/webpackHotDevClient',
+    require.resolve('react-hot-loader/patch'),
+    require.resolve('react-dev-utils/webpackHotDevClient'),
     PATHS.appPolyfills,
     PATHS.appIndexJs,
   ],
   output: {
     path: PATHS.appBuild,
     pathinfo: true,
-    filename: 'static/js/bundle.js',
+    filename: path.join(staticDir, 'js', 'bundle.js'),
     publicPath,
   },
   resolve: {
@@ -36,9 +38,7 @@ module.exports = {
         test: /\.(js|jsx)$/,
         loader: 'babel',
         include: PATHS.appSrc,
-        query: {
-          cacheDirectory: true,
-        },
+        query: { cacheDirectory: true },
       },
       {
         test: /\.(scss|css)$/,
@@ -52,7 +52,7 @@ module.exports = {
         test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
         loader: 'file',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]',
+          name: path.join(staticDir, 'media', '[name].[hash:8].[ext]'),
         },
       },
       {
@@ -60,7 +60,7 @@ module.exports = {
         loader: 'url',
         query: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
+          name: path.join(staticDir, 'media', '[name].[hash:8].[ext]'),
         },
       },
     ],

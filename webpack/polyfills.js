@@ -5,6 +5,5 @@ if (typeof Promise === 'undefined') {
   window.Promise = require('promise/lib/es6-extensions');
 }
 
-require('whatwg-fetch');
-require('intersection-observer');
+require('isomorphic-fetch');
 Object.assign = require('object-assign');

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
 import { SpringSystem } from 'rebound';
 
 export default class ScrollLink extends Component {
@@ -12,9 +11,7 @@ export default class ScrollLink extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      isRelativeLink: this.props.to.indexOf('/') > -1,
-    };
+    this.state = {};
 
     this.onClick = this.onClick.bind(this);
     this.onMount = this.onMount.bind(this);
@@ -83,22 +80,10 @@ export default class ScrollLink extends Component {
 
   render() {
     const { to, className } = this.props;
-    const { isRelativeLink } = this.state;
-
-    if (isRelativeLink) {
-      return (
-        <Link
-          className={className}
-          to={to}
-        >
-          {this.props.children}
-        </Link>
-      );
-    }
 
     return (
       <a
-        className={this.props.className}
+        className={className}
         href={to}
         onClick={this.onClick}
       >
