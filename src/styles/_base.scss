@@ -12,8 +12,8 @@ body {
   margin: 0;
   padding: 0;
   font-family: $font-sans-serif;
-  border-left: 1rem solid $color-main;
-  border-right: 1rem solid $color-main;
+  border-left: $border-frame solid $color-main;
+  border-right: $border-frame solid $color-main;
   background: url('../img/bg.jpg') $color-background;
 
   &::before,
@@ -23,7 +23,7 @@ body {
     background: $color-main;
     left: 0;
     right: 0;
-    height: 1rem;
+    height: $border-frame;
     z-index: 1;
   }
 

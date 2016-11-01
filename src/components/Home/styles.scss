@@ -59,6 +59,10 @@
     font-size: $font-size-title-tablet;
     letter-spacing: $font-spacing-title-tablet;
   }
+
+  @include media-desktop {
+    font-size: $font-size-title-desktop;
+  }
 }
 
 .subtitle {
@@ -70,6 +74,10 @@
 
   @include media-tablet {
     font-size: $font-size-subtitle-tablet;
+  }
+
+  @include media-desktop {
+    font-size: $font-size-subtitle-desktop;
   }
 }
 
