@@ -11,7 +11,7 @@ import akvarell1 from '../../img/akvarell-1.png';
 import akvarell2 from '../../img/akvarell-2.png';
 
 type Props = {
-  uri: string;
+  uri?: string;
   reverse: boolean;
 }
 
