@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react';
 import classNames from 'classnames';
 
@@ -5,8 +7,21 @@ import s from './styles.scss';
 
 import ScrollLink from '../ScrollLink';
 
+type Route = {
+  title: string;
+  path: string;
+}
+
+type Props = {
+  routes: Route[];
+}
+
 export default class Menu extends Component {
-  constructor(props) {
+  props: Props;
+  state: { showMenu: boolean };
+  handleClick: () => void;
+
+  constructor(props: Props) {
     super(props);
     this.state = { showMenu: false };
     this.handleClick = this.handleClick.bind(this);
@@ -19,21 +34,14 @@ export default class Menu extends Component {
   }
 
   render() {
-    const routes = [
-      { path: '', title: 'Hem' },
-      { path: 'aktuellt', title: 'Aktuellt' },
-      { path: 'information', title: 'information' },
-      { path: 'musik', title: 'Musik' },
-    ];
-
-    const items = routes.map((item, i) => (
+    const items = this.props.routes.map((route, i) => (
       <li className={s.menuItem} key={i}>
         <ScrollLink
           className={s.menuItemLink}
-          to={item.path}
+          to={route.path}
           onClick={this.handleClick}
         >
-          {item.title}
+          {route.title}
         </ScrollLink>
       </li>
     ));

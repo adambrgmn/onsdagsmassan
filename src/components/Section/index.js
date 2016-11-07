@@ -12,16 +12,17 @@ type Content = {
   title: string;
   uri: string;
   body: string;
-  layout: { reverse: boolean };
 }
 
 type Props = {
-  pathname: string;
+  sectionName: string;
   content: Content;
+  reverse: boolean;
 }
 
-export default function Section({ content, pathname }: Props) {
-  const sectionName = pathname.replace('/', '');
+export default function Section(props: Props) {
+  const { sectionName, reverse } = props;
+
   const cx = {
     [s.section]: true,
     [`section-${sectionName}`]: true,
@@ -29,8 +30,8 @@ export default function Section({ content, pathname }: Props) {
 
   return (
     <div id={sectionName} className={classNames(cx)}>
-      <SectionSidebar uri={content.uri} reverse={content.layout.reverse} />
-      <SectionText title={content.title} body={content.body} />
+      <SectionSidebar uri={props.content.uri} reverse={reverse} />
+      <SectionText title={props.content.title} body={props.content.body} />
     </div>
   );
 }
