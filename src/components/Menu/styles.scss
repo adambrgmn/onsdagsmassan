@@ -2,10 +2,10 @@
 @import '../../styles/mixins';
 
 .menu {
-  width: calc(100% - 2rem);
+  width: calc(100% - #{$border-frame} * 2);
   position: fixed;
   top: calc(-145px + 1rem);
-  left: 1rem;
+  left: $border-frame;
   padding-top: 1rem;
   font-family: $font-sans-serif;
   font-size: 1rem;
