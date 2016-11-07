@@ -7,9 +7,9 @@ import Footer from '../Footer';
 import Section from '../Section';
 
 export default () => {
-  const aktuellt = getContent('/aktuellt');
-  const information = getContent('/information');
-  const musik = getContent('/musik');
+  const aktuellt = getContent('aktuellt');
+  const information = getContent('information');
+  const musik = getContent('musik');
 
   return (
     <div className="container">

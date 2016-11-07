@@ -1,6 +1,3 @@
-import content from '../../content.json';
+import content from '../../db';
 
-export default (path) => {
-  const section = path.replace('/', '');
-  return content[section];
-};
+export default (path) => content[path];
