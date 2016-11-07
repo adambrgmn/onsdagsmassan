@@ -22,3 +22,18 @@
     padding: 0;
   }
 }
+
+.sectionShowButton {
+  margin: 0;
+  border: none;
+  padding: 0;
+  font-family: $font-sans-serif;
+  color: $color-body;
+  background: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    cursor: pointer;
+  }
+}
