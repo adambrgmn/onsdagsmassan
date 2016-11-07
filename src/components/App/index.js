@@ -2,6 +2,8 @@
 
 import React from 'react';
 
+import s from './styles.scss';
+
 import Menu from '../Menu';
 import Home from '../Home';
 import Footer from '../Footer';
@@ -16,7 +18,7 @@ export default function App() {
   ];
 
   return (
-    <div className="container">
+    <div className={s.container}>
       <Menu routes={routes} />
       <Home />
       {routes.slice(1).map(({ path }, i) => {
