@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import classNames from 'classnames';
 
 import s from './styles.scss';
-import bg from '../../img/bg.jpg';
 
 import ScrollLink from '../ScrollLink';
 
