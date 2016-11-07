@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.sectionTextContent {
+  padding: 0 1rem;
+
+  & h2 {
+    margin-top: 0;
+    font-family: $font-sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  & p {
+    color: $color-body;
+    font-family: $font-serif;
+    font-size: 1rem;
+  }
+
+  @include media-tablet {
+    max-width: 50%;
+    padding: 0;
+  }
+}

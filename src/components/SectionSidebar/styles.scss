@@ -1,39 +1,19 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 
-.section {
-  min-height: 100vh;
-  padding: 5rem 0;
-  color: $color-main;
-
-  @include media-tablet {
-    display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
-    padding: 5rem 2rem;
-  }
-
-  @include media-desktop {
-    width: 75%;
-    margin: 0 auto;
-  }
-}
-
 .sectionSidebar {
   width: 50%;
   float: left;
   shape-outside: circle();
   vertical-align: bottom;
+}
 
-  .sectionReverse & {
-    float: right;
-  }
+.sectionReverse {
+  float: right;
 
   @include media-tablet {
-    .sectionReverse & {
-      order: 2;
-    }
+    float: left;
+    order: 2;
   }
 }
 
