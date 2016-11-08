@@ -18,3 +18,9 @@
   animation-timing-function: $timing;
   animation-fill-mode: both;
 }
+
+@mixin after-first($num) {
+  &:nth-child(n + #{$num + 1}) {
+    @content;
+  }
+}

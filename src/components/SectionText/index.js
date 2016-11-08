@@ -8,18 +8,21 @@ import s from './styles.scss';
 type Props = {
   title: string;
   body: string;
-  showMore?: (e: SyntheticEvent) => void;
+  textContainerClass?: string;
+  showMoreButton?: () => React$Element<*>;
 }
 
-export default function SectionText({ title, body, showMore }: Props) {
+export default function SectionText({
+  title,
+  body,
+  textContainerClass,
+  showMoreButton,
+}: Props) {
   return (
     <div className={s.sectionTextContent}>
       <h2>{title}</h2>
-      <ReactMarkdown source={body} />
-      {showMore ?
-        <button onClick={showMore} type="button" className={s.sectionShowButton}>Läs mer ...</button> :
-        null
-      }
+      <ReactMarkdown className={textContainerClass} source={body} />
+      {showMoreButton ? showMoreButton() : null}
     </div>
   );
 }

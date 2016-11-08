@@ -8,6 +8,7 @@ import s from './styles.scss';
 
 import SectionText from '../SectionText';
 import SectionSidebar from '../SectionSidebar';
+import ScrollLink from '../ScrollLink';
 
 
 type Props = {
@@ -18,9 +19,9 @@ type Props = {
 type State = {
   body: string;
   title: string;
-  excerpt: string;
   uri?: string;
   showExcerpt: boolean;
+  needExcerpt: boolean;
 }
 
 export default class Section extends Component {
@@ -29,7 +30,13 @@ export default class Section extends Component {
 
   constructor(props: Props) {
     super(props);
-    this.state = { body: '', title: '', excerpt: '', showExcerpt: false };
+    this.state = {
+      body: '',
+      title: '',
+      excerpt: '',
+      showExcerpt: false,
+      needExcerpt: false,
+    };
   }
 
   componentDidMount(): void { this.fetchContent(); }
@@ -37,39 +44,53 @@ export default class Section extends Component {
   fetchContent = (): void => {
     getContent(this.props.sectionName)
       .then(({ body, title, uri }) => {
-        let showExcerpt = false;
         const splitBody = body.split('\n\n');
-        const excerpt = splitBody
-          .slice(0, 5)
-          .join('\n\n');
+        const needExcerpt = splitBody.length > 5;
 
-        if (splitBody.length > 5) showExcerpt = true;
-
-        this.setState({ body, title, uri, excerpt, showExcerpt });
+        this.setState({ body, title, uri, needExcerpt });
       })
       .catch(console.error);
   }
 
-  onShowMoreClick = (e: SyntheticEvent): void => {
-    e.preventDefault();
-    this.setState({ showExcerpt: !this.state.showExcerpt });
+  onShowMoreClick = (): void => this.setState({ showExcerpt: !this.state.showExcerpt });
+
+  showMoreButton = (): React$Element<*> => {
+    const { showExcerpt } = this.state;
+    const { sectionName } = this.props;
+
+    return (
+      <ScrollLink
+        onClick={this.onShowMoreClick}
+        className={s.sectionShowButton}
+        to={sectionName}
+      >
+        {showExcerpt ? 'Göm ↑' : 'Läs mer ↓'}
+      </ScrollLink>
+    );
   }
 
   render() {
     const { sectionName, reverse } = this.props;
-    const { body, title, uri, excerpt, showExcerpt } = this.state;
-    const cx = {
+    const { body, title, uri, showExcerpt, needExcerpt } = this.state;
+
+    const cxContainer = {
       [s.section]: true,
       [`section-${sectionName}`]: true,
     };
 
+    const cxSectionText = {
+      [s.textContainer]: true,
+      [s.textContainerExcerpt]: !showExcerpt,
+    };
+
     return (
-      <div id={sectionName} className={classNames(cx)}>
+      <div id={sectionName} className={classNames(cxContainer)}>
         <SectionSidebar uri={uri} reverse={reverse} />
         <SectionText
           title={title}
-          body={showExcerpt ? excerpt : body}
-          showMore={showExcerpt ? this.onShowMoreClick : undefined}
+          body={body}
+          textContainerClass={classNames(cxSectionText)}
+          showMoreButton={needExcerpt ? this.showMoreButton : undefined}
         />
       </div>
     );
