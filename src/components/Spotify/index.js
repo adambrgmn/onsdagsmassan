@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+// @flow
+
+import React from 'react';
 import { format } from 'url';
 
-export default function Spotify({ uri }) {
+export default function Spotify({ uri }: { uri: string }) {
   const src = format({
     protocol: 'https',
     hostname: 'embed.spotify.com/',
@@ -21,7 +23,3 @@ export default function Spotify({ uri }) {
     />
   );
 }
-
-Spotify.propTypes = {
-  uri: PropTypes.string,
-};

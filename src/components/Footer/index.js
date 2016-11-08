@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react';
 
 import s from './styles.scss';

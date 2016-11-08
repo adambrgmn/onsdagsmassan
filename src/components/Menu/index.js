@@ -12,29 +12,20 @@ type Route = {
   path: string;
 }
 
-type Props = {
-  routes: Route[];
-}
-
 export default class Menu extends Component {
-  props: Props;
+  props: { routes: Route[] };
   state: { showMenu: boolean };
-  handleClick: () => void;
 
-  constructor(props: Props) {
+  constructor(props: { routes: Route[] }) {
     super(props);
     this.state = { showMenu: false };
-    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick() {
-    this.setState({
-      showMenu: !this.state.showMenu,
-    });
-  }
+  handleClick = (): void => this.setState({ showMenu: !this.state.showMenu });
 
   render() {
-    const items = this.props.routes.map((route, i) => (
+    const { routes } = this.props;
+    const items = routes.map((route, i) => (
       <li className={s.menuItem} key={i}>
         <ScrollLink
           className={s.menuItemLink}

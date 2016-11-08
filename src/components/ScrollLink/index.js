@@ -1,26 +1,37 @@
-import React, { Component, PropTypes } from 'react';
+// @flow
+
+import React, { Component } from 'react';
 import { SpringSystem } from 'rebound';
 
+type Props = {
+  to: string;
+  className?: string;
+  children?: any;
+  onClick: () => any;
+}
+
+type State = {
+  node: HTMLElement | { offsetTop: number };
+  isRelativeLink: boolean;
+}
+
 export default class ScrollLink extends Component {
-  static propTypes = {
-    to: PropTypes.string.isRequired,
-    className: PropTypes.string,
-    children: PropTypes.string,
-    onClick: PropTypes.func,
-  }
+  props: Props;
+  state: State;
+  spring: any;
+  springSystem: any;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
-    this.state = {};
-
-    this.onClick = this.onClick.bind(this);
-    this.onMount = this.onMount.bind(this);
-    this.initSpring = this.initSpring.bind(this);
+    this.state = {
+      node: { offsetTop: 0 },
+      isRelativeLink: false,
+    };
   }
 
   componentDidMount() { this.onMount(); }
 
-  onClick(e) {
+  onClick = (e: SyntheticEvent): any => {
     e.preventDefault();
     this.props.onClick();
     if (!this.spring) return null;
@@ -57,7 +68,7 @@ export default class ScrollLink extends Component {
     return this.spring.setEndValue(1);
   }
 
-  onMount() {
+  onMount = (): any => {
     const { to } = this.props;
     const { isRelativeLink } = this.state;
 
@@ -73,7 +84,7 @@ export default class ScrollLink extends Component {
     return this.setState({ node }, this.initSpring);
   }
 
-  initSpring() {
+  initSpring = (): void => {
     this.springSystem = new SpringSystem();
     this.spring = this.springSystem.createSpring(10, 4);
   }
