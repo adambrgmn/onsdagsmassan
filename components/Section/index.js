@@ -3,6 +3,7 @@
 import React from 'react';
 import { merge, media, select as $ } from 'next/css';
 
+import SlowScroll from '../SlowScroll';
 import Img from '../Img';
 import Spotify from '../Spotify';
 import Grid, { GridItem } from '../Grid';
@@ -18,9 +19,9 @@ export default ({
 }) => (
   <Grid reverse={reverse} id={title.toLowerCase()}>
     <GridItem>
-      <div className={styles.sectionSidebar}>
+      <SlowScroll className={styles.sectionSidebar} maxTranslate={30}>
         {spotify ? <Spotify uri={spotify} /> : <Img src={img} role="presentation" />}
-      </div>
+      </SlowScroll>
     </GridItem>
     <GridItem>
       <h2 className={styles.sectionTitle}>{title}</h2>
