@@ -1,13 +1,13 @@
 {
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:flowtype/recommended"],
+  "extends": ["airbnb"],
   "env": {
     "node": true,
     "browser": true,
     "es6": true,
     "commonjs": true,
   },
-  "plugins": ["babel", "flowtype"],
+  "plugins": ["babel"],
   "rules": {
     "no-console": 0,
 
@@ -16,12 +16,11 @@
     "babel/object-shorthand": 1,
     "babel/no-await-in-loop": 1,
     "babel/flow-object-type": 1,
-    "babel/func-params-comma-dangle": 1,
+    "babel/func-params-comma-dangle": 0,
 
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": ["!./**/*.test.js"]
-    }],
+    "import/no-extraneous-dependencies": 0,
 
+    "react/prop-types": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/sort-comp": [1, {
       "order": [
