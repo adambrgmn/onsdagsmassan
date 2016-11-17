@@ -25,7 +25,7 @@ export const font = {
   },
   family: {
     sansSerif: '"Gill Sans", "Cabin", "sans-serif"',
-    serif: '"EB Garamond", "serif"',
+    serif: '"Cormorant Garamond", "serif"',
   },
 };
 
@@ -40,11 +40,11 @@ export const color = {
 export const border = { width: '0.8rem' };
 
 export const media = {
-  tablet: '@media(min-width: 768px)',
-  desktop: '@media(min-width: 1024px)',
+  tablet: 768,
+  desktop: 1024,
 };
 
 export const mediaQuery = {
-  tablet: '(min-width: 768px)',
-  desktop: '(min-width: 1024px)',
+  tablet: `(min-width: ${media.tablet}px)`,
+  desktop: `(min-width: ${media.desktop}px)`,
 };
