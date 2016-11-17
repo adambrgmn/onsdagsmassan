@@ -1,13 +1,13 @@
 /* eslint-disable no-use-before-define */
 
 import React from 'react';
-import { merge, select as $ } from 'next/css';
+import { merge, media, select as $ } from 'next/css';
 
 import Img from '../Img';
 import Spotify from '../Spotify';
 import Grid, { GridItem } from '../Grid';
 
-import { font } from '../../styles/variables';
+import { font, mediaQuery } from '../../styles/variables';
 
 export default ({
   title,
@@ -30,7 +30,10 @@ export default ({
 );
 
 const styles = {
-  sectionSidebar: merge({ textAlign: 'right' }),
+  sectionSidebar: merge(
+    { textAlign: 'center' },
+    media(mediaQuery.tablet, { textAlign: 'right' }),
+  ),
   sectionTitle: merge({
     margin: 0,
     fontFamily: font.family.sansSerif,
