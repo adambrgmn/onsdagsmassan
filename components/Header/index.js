@@ -15,7 +15,7 @@ export default ({ img }) => (
       <Img src={img} role="presentation" />
     </div>
     <div className={styles.headerTitleContainer}>
-      <h1 className={styles.headerTitle}>Onsdagsmässan</h1>
+      <h1 className={styles.headerTitle}>Onsdagsm&auml;ssan</h1>
       <h2 className={styles.headerSubTitle}>
         Varje onsdag kl 19.30 <br />
         <Italic>St </Italic>
