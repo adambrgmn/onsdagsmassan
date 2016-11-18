@@ -42,6 +42,6 @@ export default class SlowScroll extends Component {
 
   render() {
     const { className, children } = this.props;
-    return (<div className={className} ref={this.setRef}>{children}</div>);
+    return (<div {...className} ref={this.setRef}>{children}</div>);
   }
 }

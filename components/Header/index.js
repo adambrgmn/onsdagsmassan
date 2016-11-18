@@ -11,15 +11,15 @@ import { grid, responsiveImg, uppercase } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
 
 export default ({ img, addScroll }) => (
-  <header id="hem" className={styles.header}>
-    <div className={styles.headerImgContainer}>
+  <header id="hem" {...styles.header}>
+    <div {...styles.headerImgContainer}>
       <SlowScroll maxTranslate={-30} addScroll={addScroll} ignoreMobile>
         <Img src={img} role="presentation" />
       </SlowScroll>
     </div>
-    <div className={styles.headerTitleContainer}>
-      <h1 className={styles.headerTitle}>Onsdagsm&auml;ssan</h1>
-      <h2 className={styles.headerSubTitle}>
+    <div {...styles.headerTitleContainer}>
+      <h1 {...styles.headerTitle}>Onsdagsm&auml;ssan</h1>
+      <h2 {...styles.headerSubTitle}>
         Varje onsdag kl 19.30 <br />
         <Italic>St </Italic>
         <Uppercase>Andrew&apos;s Church</Uppercase>

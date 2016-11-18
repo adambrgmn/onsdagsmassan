@@ -7,6 +7,7 @@ import SlowScroll from '../SlowScroll';
 import Img from '../Img';
 import Spotify from '../Spotify';
 import Grid, { GridItem } from '../Grid';
+import { Excerpt } from '../TextContent';
 
 import { font, mediaQuery } from '../../styles/variables';
 
@@ -14,7 +15,8 @@ export default ({
   title,
   img = '/static/img/akvarell-1.png',
   spotify,
-  textContent,
+  source,
+  readMoreLink,
   reverse,
   addScroll,
 }) => (
@@ -29,8 +31,8 @@ export default ({
       </SlowScroll>
     </GridItem>
     <GridItem>
-      <h2 className={styles.sectionTitle}>{title}</h2>
-      <div className={styles.sectionBody}>{textContent}</div>
+      <h2 {...styles.sectionTitle}>{title}</h2>
+      <Excerpt className={styles.sectionBody} source={source} readMoreLink={readMoreLink} />
     </GridItem>
   </Grid>
 );
