@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Children, cloneElement } from 'react';
 import Link from 'next/link';
 import { SpringSystem } from 'rebound';
 
 export default class ScrollLink extends Component {
   constructor(props) {
     super(props);
-    this.state = { node: { offsetTop: 0 } };
+    this.state = { node: null };
   }
 
   componentDidMount() { this.onMount(); }
@@ -49,8 +49,7 @@ export default class ScrollLink extends Component {
 
   onMount = () => {
     const { to } = this.props;
-
-    let node = { offsetTop: 0 };
+    let node = null;
 
     if (to) {
       const id = to.replace(/^(#)/, '');
@@ -66,41 +65,21 @@ export default class ScrollLink extends Component {
   }
 
   render() {
-    const { href, children } = this.props;
+    const { to, children } = this.props;
 
-    if (href) {
-      return (
-        <Link href={href}>{children}</Link>
-      );
-    }
+    if (this.props.href) return <Link href={this.props.href}>{children}</Link>;
 
-    return (
-      <a href={href} onClick={this.onClick}>
-        {children}
-      </a>
-    );
+    const childrenMap = Children.map(children, (child) => {
+      const props = { onClick: this.onClick };
+      const { href, ...childProps } = child.props;
+      const isAnchor = child && child.type === 'a';
+
+      if (!isAnchor || !href) props.href = `/${to}`;
+      if (isAnchor) return cloneElement(child, props);
+
+      return <a {...props} {...childProps}>{child}</a>;
+    });
+
+    return childrenMap[0];
   }
 }
-
-// const children = Children.map(this.props.children, (child) => {
-//       const props = {
-//         onClick: this.linkClicked
-//       }
-//
-//       const isAnchor = child && child.type === 'a'
-//
-//       // if child does not specify a href, specify it
-//       // so that repetition is not needed by the user
-//       if (!isAnchor || !('href' in child.props)) {
-//         props.href = this.props.href
-//       }
-//
-//       if (isAnchor) {
-//         return React.cloneElement(child, props)
-//       } else {
-//         return <a {...props}>{child}</a>
-//       }
-//     })
-//
-//     return children[0]
-//   }

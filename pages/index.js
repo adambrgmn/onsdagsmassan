@@ -1,7 +1,6 @@
 /* eslint-disable no-use-before-define */
 
 import React, { Component } from 'react';
-import Link from 'next/link';
 import css from 'next/css';
 import * as vars from '../styles/variables';
 import eventListeners from '../utils/eventListeners';
