@@ -4,15 +4,18 @@ import React from 'react';
 import css from 'next/css';
 
 import Img from '../Img';
+import SlowScroll from '../SlowScroll';
 import { Italic, Uppercase } from '../TextComp';
 
 import { grid, responsiveImg, uppercase } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
 
-export default ({ img }) => (
+export default ({ img, addScroll }) => (
   <header id="hem" className={styles.header}>
     <div className={styles.headerImgContainer}>
-      <Img src={img} role="presentation" />
+      <SlowScroll maxTranslate={-30} addScroll={addScroll} ignoreMobile>
+        <Img src={img} role="presentation" />
+      </SlowScroll>
     </div>
     <div className={styles.headerTitleContainer}>
       <h1 className={styles.headerTitle}>Onsdagsm&auml;ssan</h1>
