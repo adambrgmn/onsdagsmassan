@@ -5,13 +5,16 @@ import { aboveTablet } from '../../utils/mediaQuery';
 export default class SlowScroll extends Component {
   constructor(props) {
     super(props);
-    this.state = { windowHeight: 0 };
+    this.state = { windowHeight: 0, error: false };
     this.ref = null;
     this.parent = null;
   }
 
   componentDidMount() {
-    if (aboveTablet() || this.props.ignoreMobile) {
+    const { ignoreMobile } = this.props;
+    const { error } = this.state;
+
+    if (aboveTablet() || ignoreMobile || !error) {
       this.onMount();
       this.props.addScroll(this.onScroll);
     }
@@ -36,8 +39,12 @@ export default class SlowScroll extends Component {
   }
 
   setRef = (ref) => {
-    this.ref = ref;
-    this.parent = ref.parentNode.parentNode;
+    try {
+      this.ref = ref;
+      this.parent = ref.parentNode.parentNode;
+    } catch (error) {
+      this.setState({ error });
+    }
   }
 
   render() {

@@ -10,7 +10,7 @@ export default ({ showNav = true, onClick = () => {}, items = [] }) => {
   const routes = items.map((item) => (
     <li key={item.title} className={styles.navItem}>
       <ScrollLink to={item.to} href={item.href} onClick={onClick}>
-        {item.title}
+        <a {...styles.navItemLink}>{item.title}</a>
       </ScrollLink>
     </li>
   ));
