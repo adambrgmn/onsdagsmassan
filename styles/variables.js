@@ -25,7 +25,7 @@ export const font = {
   },
   family: {
     sansSerif: '"Gill Sans", "Cabin", "sans-serif"',
-    serif: '"Cormorant Garamond", "serif"',
+    serif: '"EB Garamond", "serif"',
   },
 };
 
