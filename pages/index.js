@@ -11,6 +11,8 @@ import Header from '../components/Header';
 import Section from '../components/Section';
 import Footer from '../components/Footer';
 
+import { Excerpt } from '../components/Section/InformationContent';
+
 export default class Index extends Component {
   constructor(props) {
     super(props);
@@ -39,26 +41,31 @@ export default class Index extends Component {
     const sections = [
       {
         title: 'Aktuellt',
+        to: 'aktuellt',
         img: '/static/img/akvarell-1.png',
         textContent: (<div><p>Aktuellt conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo an. At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu.</p><p>Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur. Stet conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo.</p><p>At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu. Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur.</p></div>), // eslint-disable-line max-len
       },
       {
         title: 'Information',
+        to: 'information',
         img: '/static/img/akvarell-2.png',
         reverse: true,
-        textContent: (<div><p>Information conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo an. At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu.</p><p>Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur. Stet conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo.</p><p>At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu. Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur.</p></div>), // eslint-disable-line max-len
+        textContent: (<Excerpt />), // eslint-disable-line max-len
       },
       {
         title: 'Musik',
+        to: 'musik',
         spotify: 'spotify:user:onsdagsm%C3%A4ssan:playlist:4dDDM2RIVweg1Smi9GemJY',
         textContent: (<div><p>Musik conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo an. At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu.</p><p>Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur. Stet conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo.</p><p>At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu. Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur.</p></div>), // eslint-disable-line max-len
       },
     ];
 
+    const navItems = [{ title: 'Hem', to: 'hem' }, ...sections];
+
     return (
       <div className="container">
         <Head />
-        <Nav showNav={this.state.showNav} onClick={this.onNavClick} />
+        <Nav showNav={this.state.showNav} onClick={this.onNavClick} items={navItems} />
         <Header img="/static/img/akvarell-0.png" addScroll={this.addScrollEvent} />
         {sections.map((props) => (
           <Section key={props.title} {...props} addScroll={this.addScrollEvent} />

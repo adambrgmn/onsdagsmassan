@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 import { SpringSystem } from 'rebound';
 
 export default class ScrollLink extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      node: { offsetTop: 0 },
-      isRelativeLink: false,
-    };
+    this.state = { node: { offsetTop: 0 } };
   }
 
   componentDidMount() { this.onMount(); }
@@ -51,9 +49,6 @@ export default class ScrollLink extends Component {
 
   onMount = () => {
     const { to } = this.props;
-    const { isRelativeLink } = this.state;
-
-    if (isRelativeLink) return this.setState({ node: undefined });
 
     let node = { offsetTop: 0 };
 
@@ -71,7 +66,13 @@ export default class ScrollLink extends Component {
   }
 
   render() {
-    const { to, className } = this.props;
+    const { to, className, href, children } = this.props;
+
+    if (href) {
+      return (
+        <Link href={href}><a className={className}>{children}</a></Link>
+      );
+    }
 
     return (
       <a
@@ -79,7 +80,7 @@ export default class ScrollLink extends Component {
         href={to}
         onClick={this.onClick}
       >
-        {this.props.children}
+        {children}
       </a>
     );
   }

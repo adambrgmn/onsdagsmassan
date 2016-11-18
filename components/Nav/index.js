@@ -6,11 +6,11 @@ import css from 'next/css';
 import ScrollLink from '../ScrollLink';
 import * as vars from '../../styles/variables';
 
-export default ({ showNav = true, onClick = () => {} }) => {
-  const routes = ['Hem', 'Aktuellt', 'Information', 'Musik'].map((item) => (
-    <li key={item} className={styles.navItem}>
-      <ScrollLink className={styles.navItemLink} to={item.toLowerCase()} onClick={onClick}>
-        {item}
+export default ({ showNav = true, onClick = () => {}, items = [] }) => {
+  const routes = items.map((item) => (
+    <li key={item.title} className={styles.navItem}>
+      <ScrollLink className={styles.navItemLink} to={item.to} href={item.href} onClick={onClick}>
+        {item.title}
       </ScrollLink>
     </li>
   ));
