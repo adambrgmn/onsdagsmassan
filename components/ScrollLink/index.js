@@ -66,22 +66,41 @@ export default class ScrollLink extends Component {
   }
 
   render() {
-    const { to, className, href, children } = this.props;
+    const { href, children } = this.props;
 
     if (href) {
       return (
-        <Link href={href}><a className={className}>{children}</a></Link>
+        <Link href={href}>{children}</Link>
       );
     }
 
     return (
-      <a
-        className={className}
-        href={to}
-        onClick={this.onClick}
-      >
+      <a href={href} onClick={this.onClick}>
         {children}
       </a>
     );
   }
 }
+
+// const children = Children.map(this.props.children, (child) => {
+//       const props = {
+//         onClick: this.linkClicked
+//       }
+//
+//       const isAnchor = child && child.type === 'a'
+//
+//       // if child does not specify a href, specify it
+//       // so that repetition is not needed by the user
+//       if (!isAnchor || !('href' in child.props)) {
+//         props.href = this.props.href
+//       }
+//
+//       if (isAnchor) {
+//         return React.cloneElement(child, props)
+//       } else {
+//         return <a {...props}>{child}</a>
+//       }
+//     })
+//
+//     return children[0]
+//   }

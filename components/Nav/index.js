@@ -1,7 +1,7 @@
 /* eslint-disable no-use-before-define */
 
 import React from 'react';
-import css from 'next/css';
+import { merge, media, before, after, hover } from 'next/css';
 
 import ScrollLink from '../ScrollLink';
 import * as vars from '../../styles/variables';
@@ -9,20 +9,20 @@ import * as vars from '../../styles/variables';
 export default ({ showNav = true, onClick = () => {}, items = [] }) => {
   const routes = items.map((item) => (
     <li key={item.title} className={styles.navItem}>
-      <ScrollLink className={styles.navItemLink} to={item.to} href={item.href} onClick={onClick}>
+      <ScrollLink to={item.to} href={item.href} onClick={onClick}>
         {item.title}
       </ScrollLink>
     </li>
   ));
 
   return (
-    <nav className={css.merge(styles.nav, showNav ? styles.showNav : null)}>
-      <ul className={css(styles.navList)}>
+    <nav {...merge(styles.nav, showNav ? styles.showNav : null)}>
+      <ul {...styles.navList}>
         {routes}
       </ul>
-      <div className={styles.showNavBtnContainer}>
-        <button className={styles.showNavBtn} onClick={onClick}>
-          <div className={styles.showNavIcon} />
+      <div {...styles.showNavBtnContainer}>
+        <button {...styles.showNavBtn} onClick={onClick}>
+          <div {...styles.showNavIcon} />
         </button>
       </div>
     </nav>
@@ -38,7 +38,7 @@ const shared = {
 };
 
 const styles = {
-  nav: css.merge(
+  nav: merge(
     {
       width: `calc(100% - ${vars.border.width} * 2)`,
       position: 'fixed',
@@ -55,7 +55,7 @@ const styles = {
       zIndex: 1,
       transition: 'top 0.3s ease-in-out',
     },
-    css.media(vars.mediaQuery.tablet, {
+    media(vars.mediaQuery.tablet, {
       top: 0,
       paddingTop: '2rem',
       paddingBottom: '1rem',
@@ -63,33 +63,33 @@ const styles = {
     }),
   ),
 
-  showNav: { top: 0 },
+  showNav: merge({ top: 0 }),
 
-  navList: { padding: 0, margin: 0, listStyle: 'none' },
+  navList: merge({ padding: 0, margin: 0, listStyle: 'none' }),
 
-  navItem: css.merge(
+  navItem: merge(
     {
       display: 'block',
       padding: '0.25rem 0',
     },
-    css.before({ content: '"\\2022"', margin: 'auto 0.75rem' }),
-    css.after({ content: '"\\2022"', margin: 'auto 0.75rem' }),
-    css.media(vars.mediaQuery.tablet, css.merge(
+    before({ content: '"\\2022"', margin: 'auto 0.75rem' }),
+    after({ content: '"\\2022"', margin: 'auto 0.75rem' }),
+    media(vars.mediaQuery.tablet, merge(
       { display: 'inline-block', marginRight: '1rem' },
-      css.before({ margin: 0, marginRight: '1rem' }),
-      css.after({ content: '""', margin: 0 }),
+      before({ margin: 0, marginRight: '1rem' }),
+      after({ content: '""', margin: 0 }),
       { '&:last-child::after': { content: '"\\2022"', marginLeft: '1rem' } },
     )),
   ),
 
-  navItemLink: css.merge(
+  navItemLink: merge(
     {
       position: 'relative',
       color: vars.color.second,
       textDecoration: 'none',
       transition: 'color 0.3s',
     },
-    css.after({
+    after({
       content: '""',
       position: 'absolute',
       top: '150%',
@@ -100,16 +100,16 @@ const styles = {
       opacity: 0,
       transition: 'all 0.3s',
     }),
-    css.hover({ color: vars.color.secondHover }),
+    hover({ color: vars.color.secondHover }),
     { '&:hover::after': { top: '110%', background: vars.color.secondHover, opacity: 1 } },
   ),
 
-  showNavBtnContainer: css.merge(
+  showNavBtnContainer: merge(
     { background: vars.color.main },
-    css.media(vars.mediaQuery.tablet, { display: 'none' }),
+    media(vars.mediaQuery.tablet, { display: 'none' }),
   ),
 
-  showNavBtn: css.merge({
+  showNavBtn: merge({
     display: 'block',
     width: '1rem',
     height: '1rem',
@@ -120,10 +120,10 @@ const styles = {
     outline: 'none',
   }),
 
-  showNavIcon: css.merge(
+  showNavIcon: merge(
     { color: vars.color.second, ...shared },
-    css.before({ content: '""', left: 0, top: '-0.25rem', ...shared }),
-    css.after({ content: '""', left: 0, top: '0.25rem', ...shared }),
+    before({ content: '""', left: 0, top: '-0.25rem', ...shared }),
+    after({ content: '""', left: 0, top: '0.25rem', ...shared }),
   ),
 };
 
