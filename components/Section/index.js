@@ -16,10 +16,15 @@ export default ({
   spotify,
   textContent,
   reverse,
+  addScroll,
 }) => (
   <Grid reverse={reverse} id={title.toLowerCase()}>
     <GridItem>
-      <SlowScroll className={styles.sectionSidebar} maxTranslate={30}>
+      <SlowScroll
+        className={styles.sectionSidebar}
+        maxTranslate={30}
+        addScroll={addScroll}
+      >
         {spotify ? <Spotify uri={spotify} /> : <Img src={img} role="presentation" />}
       </SlowScroll>
     </GridItem>
