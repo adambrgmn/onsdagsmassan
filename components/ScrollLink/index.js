@@ -1,6 +1,7 @@
 import React, { Component, Children, cloneElement } from 'react';
 import Link from 'next/link';
 import { SpringSystem } from 'rebound';
+import ThenLink from '../ThenLink';
 
 export default class ScrollLink extends Component {
   constructor(props) {
@@ -67,7 +68,7 @@ export default class ScrollLink extends Component {
   render() {
     const { to, children } = this.props;
 
-    if (this.props.href) return <Link href={this.props.href}>{children}</Link>;
+    if (this.props.href) return <ThenLink href={this.props.href}>{children}</ThenLink>;
 
     const childrenMap = Children.map(children, (child) => {
       const props = { onClick: this.onClick };
