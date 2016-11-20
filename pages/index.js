@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import css from 'next/css';
+import axios from 'axios';
 import * as vars from '../styles/variables';
 
 import Head from '../components/Head';
@@ -11,9 +12,22 @@ import Section from '../components/Section';
 import Footer from '../components/Footer';
 import ReadMoreLink from '../components/ReadMoreLink';
 
-import information from '../resources/information';
-
 export default class Index extends Component {
+  static async getInitialProps() {
+    try {
+      const aktuellt = await axios.get('http://localhost:8080/api/aktuellt');
+      const information = await axios.get('http://localhost:8080/api/information');
+      const musik = await axios.get('http://localhost:8080/api/musik');
+      return {
+        aktuellt: aktuellt.data.content,
+        information: information.data.content,
+        musik: musik.data.content,
+      };
+    } catch (err) {
+      return { err };
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = { showNav: false, inTransition: false };
@@ -40,21 +54,21 @@ export default class Index extends Component {
         title: 'Aktuellt',
         to: 'aktuellt',
         img: 'akvarell2.png',
-        source: 'Aktuellt conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo an. At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu.\n\nEros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur. Stet conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo.\n\nAt iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu. Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur.', // eslint-disable-line max-len
+        source: this.props.aktuellt,
       },
       {
         title: 'Information',
         to: 'information',
         img: 'akvarell3.png',
         reverse: true,
-        source: information,
+        source: this.props.information,
         readMoreLink: <ReadMoreLink transition={this.onTransition} href="/information" />,
       },
       {
         title: 'Musik',
         to: 'musik',
         spotify: 'spotify:user:onsdagsm%C3%A4ssan:playlist:4dDDM2RIVweg1Smi9GemJY',
-        source: 'Musik conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo an. At iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu.\n\nEros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur. Stet conceptam reprimique duo ei, impedit tibique omittantur ne mea, mel stet consectetuer ut. Ut qui ubique definiebas percipitur, fabulas legimus signiferumque duo.\n\nAt iisque impedit salutatus cum, pri vidit referrentur eu, quo praesent expetendis interesset eu. Eros sanctus his ex. At liber electram posidonium ius. Te mei dico audire veritus. Nullam sententiae consequuntur est at, his an discere suscipiantur.', // eslint-disable-line max-len
+        source: this.props.musik,
       },
     ];
 

@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 
 import React, { Component } from 'react';
+import axios from 'axios';
 import { merge, media, select as $ } from 'next/css';
 
 import { font, mediaQuery } from '../styles/variables';
@@ -14,9 +15,16 @@ import Footer from '../components/Footer';
 import Grid from '../components/Grid';
 import SlowScroll from '../components/SlowScroll';
 
-import information from '../resources/information';
-
 export default class Information extends Component {
+  static async getInitialProps() {
+    try {
+      const information = await axios.get('http://localhost:8080/api/information');
+      return { information: information.data.content };
+    } catch (err) {
+      return { err };
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = { showNav: false };
@@ -39,7 +47,7 @@ export default class Information extends Component {
               <Img src="akvarell3.png" {...styles.image} />
             </SlowScroll>
             <h1 {...styles.title}>Information</h1>
-            <TextContent source={information} className={styles.content} />
+            <TextContent source={this.props.information} className={styles.content} />
           </div>
         </Grid>
         <Footer />
