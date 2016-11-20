@@ -7,7 +7,7 @@ export default ({ children }) => (
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta httpEquiv="Accept-CH" content="DPR, Width" />
     <link rel="shortcut icon" href="/static/favicon.ico" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i|EB+Garamond" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i|EB+Garamond&amp;subset=latin-ext" />
     {children}
   </Head>
 );
