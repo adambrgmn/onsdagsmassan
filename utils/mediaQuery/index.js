@@ -1,11 +1,6 @@
 import { media } from '../../styles/variables';
 
-export const aboveTablet = () => {
-  if (window) return window.innerWidth >= media.tablet;
-  return false;
-};
-
-export const aboveDesktop = () => {
-  if (window) return window.innerWidth >= media.desktop;
-  return false;
-};
+const windowDefined = () => typeof window !== 'undefined';
+export const createMediaQuery = (query) => () => windowDefined() && window.innerWidth >= query;
+export const aboveTablet = createMediaQuery(media.tablet);
+export const aboveDesktop = createMediaQuery(media.desktop);
