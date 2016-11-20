@@ -1,11 +1,14 @@
 /* eslint-disable no-use-before-define */
 
 import React from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { merge, media, after } from 'next/css';
+import ThenLink from '../ThenLink';
 import { color, mediaQuery, font } from '../../styles/variables';
 
-export default ({ href }) => <Link href={href}><a {...styles}>Läs mer</a></Link>;
+export default ({ transition, href }) => (
+  <ThenLink transition={transition} href={href}><a {...styles}>Läs mer</a></ThenLink>
+);
 
 const styles = merge(
   {
