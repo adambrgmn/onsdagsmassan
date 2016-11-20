@@ -1,4 +1,4 @@
-import css, { merge, media } from 'next/css';
+import css, { merge, media, keyframes, select as $ } from 'next/css';
 import { color, mediaQuery } from './variables';
 
 export const responsiveImg = css({
@@ -9,6 +9,11 @@ export const responsiveImg = css({
 
 export const uppercase = css({ textTransform: 'uppercase' });
 export const italic = css({ fontStyle: 'italic' });
+
+const fadeIn = keyframes('fadeIn', {
+  '0%': { opacity: 0, transform: 'translateX(-10%)' },
+  '100%': { opacity: 1, transform: 'translateX(0)' },
+});
 
 export const grid = (reverse) => css({
   display: 'flex',
@@ -23,7 +28,10 @@ export const grid = (reverse) => css({
 });
 
 export const gridItem = merge(
-  { width: '100%', margin: '1rem' },
+  { width: '100%', margin: '1rem', transition: 'opacity 1s, transform 1s', animation: `${fadeIn} 1s` },
   media(mediaQuery.tablet, { width: '45%' }),
-  media(mediaQuery.desktop, { width: '35%' }),
+  media(mediaQuery.desktop, { width: '30%' }),
+  $('.inTransition &', { opacity: 0 }),
+  $('.inTransition &:first-child', { transform: 'translateX(10%)' }),
+  $('.inTransition &:last-child', { transform: 'translateX(-10%)' }),
 );

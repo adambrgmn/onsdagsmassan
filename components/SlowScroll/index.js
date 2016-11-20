@@ -25,7 +25,7 @@ export default class SlowScroll extends Component {
   }
 
   componentWillUnmount() {
-    this.unregisterEventListener();
+    if ('unregisterEventListener' in this) this.unregisterEventListener();
   }
 
   onMount = () => this.setState({ windowHeight: window.innerHeight })
