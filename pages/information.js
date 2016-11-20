@@ -7,6 +7,7 @@ import { font, mediaQuery } from '../styles/variables';
 
 import Head from '../components/Head';
 import Nav from '../components/Nav';
+import Img from '../components/Img';
 import TextContent from '../components/TextContent';
 import Footer from '../components/Footer';
 import Grid, { GridItem } from '../components/Grid';
@@ -31,8 +32,10 @@ export default class Information extends Component {
         <Nav showNav={this.state.showNav} onClick={this.onNavClick} items={navItems} />
         <Grid>
           <GridItem>
+            <Img src="/static/img/akvarell-2.png" />
             <h1 {...styles.title}>Information</h1>
             <TextContent source={source} className={styles.content} />
+            <Img sizes="100vw" src="https://res.cloudinary.com/demo/w_auto:100:400/bike.jpg" />
           </GridItem>
         </Grid>
         <Footer />
@@ -52,8 +55,9 @@ const styles = {
     media(mediaQuery.tablet, { marginTop: '3rem' }),
   ),
   content: merge(
-   { padding: '0', lineHeight: '1.5' },
-   $(' p', { fontFamily: font.family.serif, fontSize: '1.2rem' }),
-   $(' *:first-child', { marginTop: 0 }),
- ),
+    { padding: '0', lineHeight: '1.5' },
+    $(' p', { fontFamily: font.family.serif, fontSize: '1.2rem' }),
+    $(' blockquote', { fontStyle: 'italic' }),
+    $(' *:first-child', { marginTop: 0 }),
+  ),
 };
