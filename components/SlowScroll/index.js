@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { aboveTablet } from '../../utils/mediaQuery';
 
+const registerEventListener = (fn) => {
+  window.addEventListener('scroll', fn);
+  return () => window.removeEventListener('scroll', fn);
+};
 
 export default class SlowScroll extends Component {
   constructor(props) {
     super(props);
-    this.state = { windowHeight: 0, error: false };
+    this.state = { windowHeight: 0, error: false, translate: 0 };
     this.ref = null;
     this.parent = null;
   }
@@ -14,10 +18,14 @@ export default class SlowScroll extends Component {
     const { ignoreMobile } = this.props;
     const { error } = this.state;
 
-    if (aboveTablet() || ignoreMobile || !error) {
+    if ((aboveTablet() || ignoreMobile) && !error) {
       this.onMount();
-      this.props.addScroll(this.onScroll);
+      this.unregisterEventListener = registerEventListener(this.onScroll);
     }
+  }
+
+  componentWillUnmount() {
+    this.unregisterEventListener();
   }
 
   onMount = () => this.setState({ windowHeight: window.innerHeight })
@@ -30,7 +38,6 @@ export default class SlowScroll extends Component {
 
     const slowScroll = () => {
       const distanceFromTop = parentRect.top / windowHeight;
-
       translateY(-maxTranslate * distanceFromTop);
     };
 

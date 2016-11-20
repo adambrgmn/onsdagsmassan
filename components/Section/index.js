@@ -18,14 +18,12 @@ export default ({
   source,
   readMoreLink,
   reverse,
-  addScroll,
 }) => (
   <Grid reverse={reverse} id={title.toLowerCase()}>
     <GridItem>
       <SlowScroll
         className={styles.sectionSidebar}
         maxTranslate={30}
-        addScroll={addScroll}
       >
         {spotify ? <Spotify uri={spotify} /> : <Img src={img} role="presentation" />}
       </SlowScroll>
@@ -49,8 +47,9 @@ const styles = {
     fontWeight: '600',
   }),
   sectionBody: merge(
-   { padding: '0', lineHeight: '1.5' },
-   $(' p', { fontFamily: font.family.serif, fontSize: font.size.sectionBody.mobile }),
-   $(' *:first-child', { marginTop: 0 }),
- ),
+    { padding: '0', lineHeight: '1.5' },
+    $(' p', { fontFamily: font.family.serif, fontSize: font.size.sectionBody.mobile }),
+    $(' blockquote', { fontStyle: 'italic' }),
+    $(' *:first-child', { marginTop: 0 }),
+  ),
 };

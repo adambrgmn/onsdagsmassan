@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import css from 'next/css';
 import * as vars from '../styles/variables';
-import eventListeners from '../utils/eventListeners';
 
 import Head from '../components/Head';
 import Nav from '../components/Nav';
@@ -18,17 +17,6 @@ export default class Index extends Component {
     this.state = { showNav: false };
     this.sectionScrollEvents = [];
   }
-
-  componentDidMount() {
-    this.unregisterScroll = eventListeners('scroll', this.runScroll);
-  }
-
-  componentWillUnmount() {
-    this.unregisterScroll();
-  }
-
-  addScrollEvent = (fn) => (this.sectionScrollEvents = [...this.sectionScrollEvents, fn]);
-  runScroll = () => this.sectionScrollEvents.forEach(fn => fn());
 
   onNavClick = (e) => {
     if (e) e.preventDefault();
@@ -65,9 +53,9 @@ export default class Index extends Component {
       <div className="container">
         <Head />
         <Nav showNav={this.state.showNav} onClick={this.onNavClick} items={navItems} />
-        <Header img="/static/img/akvarell-0.png" addScroll={this.addScrollEvent} />
+        <Header img="/static/img/akvarell-0.png" />
         {sections.map((props) => (
-          <Section key={props.title} {...props} addScroll={this.addScrollEvent} />
+          <Section key={props.title} {...props} />
         ))}
         <Footer />
       </div>

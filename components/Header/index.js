@@ -10,10 +10,10 @@ import { Italic, Uppercase } from '../TextComp';
 import { grid, responsiveImg, uppercase } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
 
-export default ({ img, addScroll }) => (
+export default ({ img }) => (
   <header id="hem" {...styles.header}>
     <div {...styles.headerImgContainer}>
-      <SlowScroll maxTranslate={-30} addScroll={addScroll} ignoreMobile>
+      <SlowScroll maxTranslate={-30} ignoreMobile>
         <Img src={img} role="presentation" />
       </SlowScroll>
     </div>
@@ -34,7 +34,7 @@ const styles = {
   headerImgContainer: css.merge(
     { width: '75%', marginBottom: '1rem' },
     css.media(mediaQuery.tablet, { width: '60%', marginBottom: '3rem' }),
-    css.media(mediaQuery.desktop, { width: '25%', marginBottom: '2rem' }),
+    css.media(mediaQuery.desktop, { width: '30%', marginBottom: '1rem' }),
   ),
 
   headerImg: css.merge(responsiveImg, { animationDelay: '0.5s' }),
