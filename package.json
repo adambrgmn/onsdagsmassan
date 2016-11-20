@@ -21,6 +21,7 @@
     "url": "http://fransvilhelm.com"
   },
   "dependencies": {
+    "axios": "^0.15.2",
     "next": "latest",
     "react-markdown": "^2.4.2",
     "rebound": "0.0.13"
