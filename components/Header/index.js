@@ -7,7 +7,7 @@ import Img from '../Img';
 import SlowScroll from '../SlowScroll';
 import { Italic, Uppercase } from '../TextComp';
 
-import { grid, responsiveImg, uppercase } from '../../styles/shared';
+import { grid, responsiveImg, uppercase, fadeIn } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
 
 export default ({ img }) => (
@@ -29,7 +29,10 @@ export default ({ img }) => (
 );
 
 const styles = {
-  header: css.merge(grid()),
+  header: css.merge(
+    grid(),
+    { animation: `${fadeIn} 1s` },
+  ),
 
   headerImgContainer: css.merge(
     { width: '75%', marginBottom: '1rem' },
