@@ -66,9 +66,13 @@ export default class ScrollLink extends Component {
   }
 
   render() {
-    const { to, children } = this.props;
+    const { to, children, transition } = this.props;
 
-    if (this.props.href) return <ThenLink href={this.props.href}>{children}</ThenLink>;
+    if (this.props.href) {
+      return (
+        <ThenLink href={this.props.href} transition={transition}>{children}</ThenLink>
+      );
+    }
 
     const childrenMap = Children.map(children, (child) => {
       const props = { onClick: this.onClick };
