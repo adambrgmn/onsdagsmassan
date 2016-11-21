@@ -10,7 +10,7 @@ export const responsiveImg = css({
 export const uppercase = css({ textTransform: 'uppercase' });
 export const italic = css({ fontStyle: 'italic' });
 
-const fadeIn = keyframes('fadeIn', {
+export const fadeIn = keyframes('fadeIn', {
   '0%': { opacity: 0, transform: 'translateX(-10%)' },
   '100%': { opacity: 1, transform: 'translateX(0)' },
 });
