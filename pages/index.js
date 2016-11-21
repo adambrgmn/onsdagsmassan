@@ -41,11 +41,7 @@ export default class Index extends Component {
 
   onTransition = () => new Promise((resolve) => {
     this.setState({ inTransition: true });
-
-    window.setTimeout(() => {
-      this.setState({ inTransition: false });
-      resolve();
-    }, 1000);
+    window.setTimeout(() => resolve(), 1000);
   });
 
   render() {

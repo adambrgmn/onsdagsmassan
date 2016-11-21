@@ -27,7 +27,7 @@ export default class Information extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { showNav: false };
+    this.state = { showNav: false, inTransition: false };
   }
 
   onNavClick = (e) => {
@@ -35,12 +35,24 @@ export default class Information extends Component {
     this.setState({ showNav: !this.state.showNav });
   }
 
+  onTransition = () => new Promise((resolve) => {
+    this.setState({ inTransition: true });
+    window.setTimeout(() => resolve(), 1000);
+  })
+
   render() {
     const navItems = [{ title: 'Tillbaka', href: '/' }];
+    const cx = this.state.inTransition ? 'container inTransition' : 'container';
+
     return (
-      <div className="container">
+      <div className={cx}>
         <Head />
-        <Nav showNav={this.state.showNav} onClick={this.onNavClick} items={navItems} />
+        <Nav
+          showNav={this.state.showNav}
+          onClick={this.onNavClick}
+          items={navItems}
+          transition={this.onTransition}
+        />
         <Grid>
           <div {...styles.gridItem}>
             <SlowScroll maxTranslate={-30} ignoreMobile>
