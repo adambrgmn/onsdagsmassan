@@ -1,15 +1,15 @@
 /* eslint-disable no-use-before-define */
 
 import React from 'react';
-import { merge, media, before, after, hover } from 'next/css';
+import { merge, media, before, after, hover, keyframes, select as $ } from 'next/css';
 
 import ScrollLink from '../ScrollLink';
 import * as vars from '../../styles/variables';
 
-export default ({ showNav = true, onClick = () => {}, items = [] }) => {
+export default ({ showNav = true, onClick = () => {}, items = [], transition = () => {} }) => {
   const routes = items.map((item) => (
     <li key={item.title} className={styles.navItem}>
-      <ScrollLink to={item.to} href={item.href} onClick={onClick}>
+      <ScrollLink to={item.to} href={item.href} onClick={onClick} transition={transition}>
         <a {...styles.navItemLink}>{item.title}</a>
       </ScrollLink>
     </li>
@@ -29,6 +29,8 @@ export default ({ showNav = true, onClick = () => {}, items = [] }) => {
   );
 };
 
+
+const moveDown = keyframes('moveDown', { '0%': { top: '-100%' } });
 
 const shared = {
   position: 'absolute',
@@ -55,12 +57,17 @@ const styles = {
       zIndex: 1,
       transition: 'top 0.3s ease-in-out',
     },
-    media(vars.mediaQuery.tablet, {
-      top: 0,
-      paddingTop: '2rem',
-      paddingBottom: '1rem',
-      background: 'none',
-    }),
+    media(vars.mediaQuery.tablet, merge(
+      {
+        top: 0,
+        paddingTop: '2rem',
+        paddingBottom: '1rem',
+        background: 'none',
+        transition: 'top 1s ease-in-out',
+        animation: `${moveDown} 1s ease-in-out`,
+      },
+      $('.inTransition &', { top: '-100%' }),
+    )),
   ),
 
   showNav: merge({ top: 0 }),
