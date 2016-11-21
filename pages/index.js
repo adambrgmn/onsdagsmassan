@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import css from 'next/css';
-import axios from 'axios';
 import * as vars from '../styles/variables';
 
 import Head from '../components/Head';
@@ -11,18 +10,13 @@ import Header from '../components/Header';
 import Section from '../components/Section';
 import Footer from '../components/Footer';
 import ReadMoreLink from '../components/ReadMoreLink';
+import { getSections } from '../utils/api';
 
 export default class Index extends Component {
   static async getInitialProps() {
     try {
-      const aktuellt = await axios.get('http://localhost:8080/api/aktuellt');
-      const information = await axios.get('http://localhost:8080/api/information');
-      const musik = await axios.get('http://localhost:8080/api/musik');
-      return {
-        aktuellt: aktuellt.data.content,
-        information: information.data.content,
-        musik: musik.data.content,
-      };
+      const response = await getSections();
+      return response;
     } catch (err) {
       return { err };
     }
@@ -50,21 +44,21 @@ export default class Index extends Component {
         title: 'Aktuellt',
         to: 'aktuellt',
         img: 'akvarell2.png',
-        source: this.props.aktuellt,
+        source: this.props.aktuellt || JSON.stringify(this.props.err.message, null, 2),
       },
       {
         title: 'Information',
         to: 'information',
         img: 'akvarell3.png',
         reverse: true,
-        source: this.props.information,
+        source: this.props.information || JSON.stringify(this.props.err.message, null, 2),
         readMoreLink: <ReadMoreLink transition={this.onTransition} href="/information" />,
       },
       {
         title: 'Musik',
         to: 'musik',
         spotify: 'spotify:user:onsdagsm%C3%A4ssan:playlist:4dDDM2RIVweg1Smi9GemJY',
-        source: this.props.musik,
+        source: this.props.musik || JSON.stringify(this.props.err.message, null, 2),
       },
     ];
 
