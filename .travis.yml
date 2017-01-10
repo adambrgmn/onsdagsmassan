@@ -1,13 +1,21 @@
 language: node_js
 node_js:
 - '7'
+
 cache: yarn
+
 before_script: npm install -g now
 script: npm run deploy
+
 branches:
   only:
   - master
   - develop
+
+env:
+  - ALIAS_DEVELOPMENT=beta.onsdagsmassan.se
+  - ALIAS_PRODUCTION=onsdagsmassan.se
+
 notifications:
   email: false
   slack:
