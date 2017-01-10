@@ -6,28 +6,52 @@ import { merge, media, before, after, hover, keyframes, select as $ } from 'next
 import ScrollLink from '../ScrollLink';
 import * as vars from '../../styles/variables';
 
-export default ({ showNav = true, onClick = () => {}, items = [], transition = () => {} }) => {
-  const routes = items.map((item) => (
-    <li key={item.title} className={styles.navItem}>
-      <ScrollLink to={item.to} href={item.href} onClick={onClick} transition={transition}>
-        <a {...styles.navItemLink}>{item.title}</a>
-      </ScrollLink>
-    </li>
-  ));
+export default class Nav extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navHeight: 175,
+    };
+  }
 
-  return (
-    <nav {...merge(styles.nav, showNav ? styles.showNav : null)}>
-      <ul {...styles.navList}>
-        {routes}
-      </ul>
-      <div {...styles.showNavBtnContainer}>
-        <button {...styles.showNavBtn} onClick={onClick}>
-          <div {...styles.showNavIcon} />
-        </button>
-      </div>
-    </nav>
-  );
-};
+  componentDidMount() {
+    this.onMount();
+  }
+
+  onMount = () => {
+    const { height } = this.container.getBoundingClientRect();
+    this.setState({ navHeight: height });
+  }
+
+  render() {
+    const { showNav, onClick, items, transition } = this.props;
+    const { navHeight } = this.state;
+
+    const routes = items.map((item) => (
+      <li key={item.title} className={styles.navItem}>
+        <ScrollLink to={item.to} href={item.href} onClick={onClick} transition={transition}>
+          <a {...styles.navItemLink}>{item.title}</a>
+        </ScrollLink>
+      </li>
+    ));
+
+    return (
+      <nav
+        ref={ref => (this.container = ref)}
+        {...merge(styles.nav(navHeight), showNav ? styles.showNav : null)}
+      >
+        <ul {...styles.navList}>
+          {routes}
+        </ul>
+        <div {...styles.showNavBtnContainer}>
+          <button {...styles.showNavBtn} onClick={onClick}>
+            <div {...styles.showNavIcon} />
+          </button>
+        </div>
+      </nav>
+    );
+  }
+}
 
 
 const moveDown = keyframes('moveDown', { '0%': { top: '-100%' } });
@@ -40,12 +64,12 @@ const shared = {
 };
 
 const styles = {
-  nav: merge(
+  nav: (navHeight) => merge(
     {
-      width: `calc(100% - ${vars.border.width} * 2)`,
+      width: '100%',
       position: 'fixed',
-      top: `calc(-145px + ${vars.border.width})`,
-      left: vars.border.width,
+      top: `calc(-${navHeight}px + 1.5rem)`,
+      left: 0,
       paddingTop: vars.border.width,
       fontFamily: vars.font.family.sansSerif,
       fontSize: vars.font.size.nav.mobile,
@@ -70,20 +94,20 @@ const styles = {
     )),
   ),
 
-  showNav: merge({ top: 0 }),
+  showNav: merge({ top: '0' }),
 
   navList: merge({ padding: 0, margin: 0, listStyle: 'none' }),
 
   navItem: merge(
     {
       display: 'block',
-      padding: '0.25rem 0',
+      padding: '0.5rem 0',
     },
-    before({ content: '"\\2022"', margin: 'auto 0.75rem' }),
-    after({ content: '"\\2022"', margin: 'auto 0.75rem' }),
+    before({ content: '""', margin: 'auto 0.75rem' }),
+    after({ content: '""', margin: 'auto 0.75rem' }),
     media(vars.mediaQuery.tablet, merge(
       { display: 'inline-block', marginRight: '1rem' },
-      before({ margin: 0, marginRight: '1rem' }),
+      before({ content: '"\\2022"', margin: 0, marginRight: '1rem' }),
       after({ content: '""', margin: 0 }),
       { '&:last-child::after': { content: '"\\2022"', marginLeft: '1rem' } },
     )),
@@ -112,14 +136,14 @@ const styles = {
   ),
 
   showNavBtnContainer: merge(
-    { background: vars.color.main },
+    { background: vars.color.main, width: '100%' },
     media(vars.mediaQuery.tablet, { display: 'none' }),
   ),
 
   showNavBtn: merge({
     display: 'block',
     width: '1rem',
-    height: '1rem',
+    height: '1.5rem',
     margin: '0.5rem auto 0',
     padding: 0,
     border: 'none',
@@ -133,30 +157,3 @@ const styles = {
     after({ content: '""', left: 0, top: '0.25rem', ...shared }),
   ),
 };
-
-// .menuIcon,
-// .menuIcon::before,
-// .menuIcon::after {
-//   position: absolute;
-//   width: 1rem;
-//   height: 1px;
-//   background-color: currentColor;
-// }
-//
-// .menuIcon {
-//   color: $color-second;
-//
-//   &::before,
-//   &::after {
-//     content: '';
-//     left: 0;
-//   }
-//
-//   &::before {
-//     top: -0.25rem;
-//   }
-//
-//   &::after {
-//     top: 0.25rem;
-//   }
-// }

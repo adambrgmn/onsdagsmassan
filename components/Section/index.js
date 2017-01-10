@@ -8,8 +8,9 @@ import Img from '../Img';
 import Spotify from '../Spotify';
 import Grid, { GridItem } from '../Grid';
 import { Excerpt } from '../TextContent';
+import { Uppercase } from '../TextComp';
 
-import { font, mediaQuery } from '../../styles/variables';
+import { font, mediaQuery, color } from '../../styles/variables';
 
 export default ({
   title,
@@ -25,11 +26,13 @@ export default ({
         className={styles.sectionSidebar}
         maxTranslate={30}
       >
-        {spotify ? <Spotify uri={spotify} /> : <Img src={img} role="presentation" />}
+        {spotify ? <Spotify uri={spotify} /> : <Img src={img} className={styles.sectionImg} role="presentation" />}
       </SlowScroll>
     </GridItem>
     <GridItem>
-      <h2 {...styles.sectionTitle}>{title}</h2>
+      <h2 {...styles.sectionTitle}>
+        <Uppercase>{title}</Uppercase>
+      </h2>
       <Excerpt className={styles.sectionBody} source={source} readMoreLink={readMoreLink} />
     </GridItem>
   </Grid>
@@ -40,10 +43,15 @@ const styles = {
     { textAlign: 'center' },
     media(mediaQuery.tablet, { textAlign: 'right' }),
   ),
+  sectionImg: merge(
+    { padding: '2.5rem' },
+    media(mediaQuery.tablet, { padding: 0 }),
+  ),
   sectionTitle: merge({
     margin: 0,
     fontFamily: font.family.sansSerif,
     fontSize: font.size.sectionTitle.mobile,
+    color: color.second,
     fontWeight: '600',
   }),
   sectionBody: merge(

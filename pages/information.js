@@ -3,13 +3,14 @@
 import React, { Component } from 'react';
 import { merge, media, select as $ } from 'next/css';
 
-import { font, mediaQuery } from '../styles/variables';
+import { font, mediaQuery, color } from '../styles/variables';
 import { gridItem } from '../styles/shared';
 
 import Head from '../components/Head';
 import Nav from '../components/Nav';
 import Img from '../components/Img';
 import TextContent from '../components/TextContent';
+import { Uppercase } from '../components/TextComp';
 import Footer from '../components/Footer';
 import Grid from '../components/Grid';
 import SlowScroll from '../components/SlowScroll';
@@ -55,7 +56,9 @@ export default class Information extends Component {
             <SlowScroll maxTranslate={-30} ignoreMobile>
               <Img src="akvarell3.png" {...styles.image} />
             </SlowScroll>
-            <h1 {...styles.title}>Information</h1>
+            <h1 {...styles.title}>
+              <Uppercase>Information</Uppercase>
+            </h1>
             <TextContent source={this.props.section} className={styles.content} />
           </div>
         </Grid>
@@ -67,13 +70,14 @@ export default class Information extends Component {
 
 const styles = {
   gridItem: merge(gridItem, media(mediaQuery.desktop, { width: '40%' })),
-  image: merge({ width: '70%', margin: '5rem auto 0 auto' }),
+  image: merge({ width: '70%', margin: '5rem auto 3rem auto' }),
   title: merge(
     {
       margin: 0,
       fontFamily: font.family.sansSerif,
       fontSize: '1.2rem',
       fontWeight: '600',
+      color: color.second,
     },
     media(mediaQuery.tablet, { marginTop: '3rem' }),
   ),

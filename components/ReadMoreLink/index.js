@@ -13,7 +13,7 @@ export default ({ transition, href }) => (
 const styles = merge(
   {
     position: 'relative',
-    color: color.main,
+    color: color.second,
     fontFamily: font.family.sansSerif,
     textDecoration: 'none',
   },

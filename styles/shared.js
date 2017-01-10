@@ -24,7 +24,7 @@ export const grid = (reverse) => css({
   padding: '1rem',
   minHeight: '100vh',
   width: '100%',
-  color: color.main,
+  color: color.body,
 });
 
 export const gridItem = merge(

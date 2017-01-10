@@ -7,7 +7,7 @@ import Img from '../Img';
 import SlowScroll from '../SlowScroll';
 import { Italic, Uppercase } from '../TextComp';
 
-import { grid, responsiveImg, uppercase, fadeIn } from '../../styles/shared';
+import { grid, responsiveImg, uppercase } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
 
 export default ({ img }) => (
@@ -20,9 +20,8 @@ export default ({ img }) => (
     <div {...styles.headerTitleContainer}>
       <h1 {...styles.headerTitle}>Onsdagsm&auml;ssan</h1>
       <h2 {...styles.headerSubTitle}>
-        Varje onsdag kl 19.30 <br />
-        <Italic>St </Italic>
-        <Uppercase>Andrew&apos;s Church</Uppercase>
+        Varje onsdag kl 18.30 <br />
+        <Uppercase>Betlehemskyrkan</Uppercase>
       </h2>
     </div>
   </header>
@@ -31,11 +30,10 @@ export default ({ img }) => (
 const styles = {
   header: css.merge(
     grid(),
-    { animation: `${fadeIn} 1s` },
   ),
 
   headerImgContainer: css.merge(
-    { width: '75%', marginBottom: '1rem' },
+    { width: '75%', marginBottom: '2rem' },
     css.media(mediaQuery.tablet, { width: '60%', marginBottom: '3rem' }),
     css.media(mediaQuery.desktop, { width: '30%', marginBottom: '1rem' }),
   ),

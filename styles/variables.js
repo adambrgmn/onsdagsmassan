@@ -31,7 +31,7 @@ export const font = {
 
 export const color = {
   main: 'rgba(156, 188, 207, 1)',
-  body: 'rgba(122, 165, 191, 1)',
+  body: 'rgba(120, 163, 188, 1)',
   second: 'rgba(220, 111, 95, 1)',
   background: 'rgba(225, 227, 232, 1)',
   secondHover: 'rgba(174, 57, 42, 1)',
