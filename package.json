@@ -7,7 +7,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "deploy": "now"
+    "deploy": "./scripts/deploy.sh"
   },
   "repository": "adambrgmn/onsdagsmassan",
   "keywords": [
@@ -21,7 +21,7 @@
     "url": "http://fransvilhelm.com"
   },
   "dependencies": {
-    "axios": "^0.15.2",
+    "axios": "^0.15.3",
     "next": "latest",
     "react-markdown": "^2.4.2",
     "rebound": "0.0.13"
