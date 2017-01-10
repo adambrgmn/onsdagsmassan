@@ -49,10 +49,12 @@ const styles = {
   ),
   sectionTitle: merge({
     margin: 0,
+    marginBottom: '0.5rem',
     fontFamily: font.family.sansSerif,
     fontSize: font.size.sectionTitle.mobile,
     color: color.second,
-    fontWeight: '600',
+    fontWeight: '500',
+    letterSpacing: '2px',
   }),
   sectionBody: merge(
     { padding: '0', lineHeight: '1.5' },

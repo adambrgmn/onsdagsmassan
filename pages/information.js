@@ -74,10 +74,12 @@ const styles = {
   title: merge(
     {
       margin: 0,
+      marginBottom: '0.5rem',
       fontFamily: font.family.sansSerif,
-      fontSize: '1.2rem',
-      fontWeight: '600',
+      fontSize: font.size.sectionTitle.mobile,
       color: color.second,
+      fontWeight: '500',
+      letterSpacing: '2px',
     },
     media(mediaQuery.tablet, { marginTop: '3rem' }),
   ),
