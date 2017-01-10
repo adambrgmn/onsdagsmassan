@@ -1,18 +1,39 @@
 {
   "name": "onsdagsmassan",
-  "version": "0.1.0",
-  "private": true,
-  "devDependencies": {
-    "react-scripts": "0.6.1"
+  "version": "0.0.1",
+  "description": "Home of Onsdagsmässan",
+  "homepage": "https://onsdagsmassan.se",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "deploy": "./scripts/deploy.sh"
+  },
+  "repository": "adambrgmn/onsdagsmassan",
+  "keywords": [
+    "React",
+    "Next.js"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Adam Bergman",
+    "email": "adam@fransvilhelm.com",
+    "url": "http://fransvilhelm.com"
   },
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2"
+    "axios": "^0.15.3",
+    "next": "latest",
+    "react-markdown": "^2.4.2",
+    "rebound": "0.0.13"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "babel-eslint": "^7.1.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.7.1",
+    "now": "^0.28.1"
   }
 }
