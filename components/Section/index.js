@@ -22,10 +22,7 @@ export default ({
 }) => (
   <Grid reverse={reverse} id={title.toLowerCase()}>
     <GridItem>
-      <SlowScroll
-        className={styles.sectionSidebar}
-        maxTranslate={30}
-      >
+      <SlowScroll className={styles.sectionSidebar} center ignoreMobile>
         {spotify ? <Spotify uri={spotify} /> : <Img src={img} className={styles.sectionImg} role="presentation" />}
       </SlowScroll>
     </GridItem>

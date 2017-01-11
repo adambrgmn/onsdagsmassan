@@ -16,6 +16,7 @@ import Grid from '../components/Grid';
 import SlowScroll from '../components/SlowScroll';
 
 import { getSection } from '../utils/api';
+import rellax from '../utils/rellax';
 
 export default class Information extends Component {
   static async getInitialProps() {
@@ -26,6 +27,14 @@ export default class Information extends Component {
   constructor(props) {
     super(props);
     this.state = { showNav: false, inTransition: false };
+  }
+
+  componentDidMount() {
+    this.destroyRellax = rellax();
+  }
+
+  componentWillUnmount() {
+    this.destroyRellax();
   }
 
   onNavClick = (e) => {
@@ -53,7 +62,7 @@ export default class Information extends Component {
         />
         <Grid>
           <div {...styles.gridItem}>
-            <SlowScroll maxTranslate={-30} ignoreMobile>
+            <SlowScroll faster>
               <Img src="akvarell3.png" {...styles.image} />
             </SlowScroll>
             <h1 {...styles.title}>

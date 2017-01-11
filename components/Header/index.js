@@ -13,7 +13,7 @@ import { mediaQuery, font } from '../../styles/variables';
 export default ({ img }) => (
   <header id="hem" {...styles.header}>
     <div {...styles.headerImgContainer}>
-      <SlowScroll maxTranslate={-30} ignoreMobile>
+      <SlowScroll faster>
         <Img src={img} role="presentation" />
       </SlowScroll>
     </div>

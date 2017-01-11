@@ -11,6 +11,7 @@ import Section from '../components/Section';
 import Footer from '../components/Footer';
 import ReadMoreLink from '../components/ReadMoreLink';
 import { getSections } from '../utils/api';
+import rellax from '../utils/rellax';
 
 export default class Index extends Component {
   static async getInitialProps() {
@@ -26,6 +27,14 @@ export default class Index extends Component {
     super(props);
     this.state = { showNav: false, inTransition: false };
     this.sectionScrollEvents = [];
+  }
+
+  componentDidMount() {
+    this.destroyRellax = rellax();
+  }
+
+  componentWillUnmount() {
+    this.destroyRellax();
   }
 
   onNavClick = (e) => {
