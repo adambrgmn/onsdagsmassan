@@ -19,4 +19,4 @@ echo "with NODE_ENV=${NODE_ENV}"
 now -e NODE_ENV=${NODE_ENV} -t ${NOW_TOKEN} -C -f
 
 echo "Setting alias for deployment to ${ALIAS}"
-now alias set ${get_id} ${ALIAS} -t ${NOW_TOKEN}
+now alias set $(get_id) ${ALIAS} -t ${NOW_TOKEN}
