@@ -24,7 +24,8 @@
     "firebase": "^3.6.5",
     "next": "latest",
     "react-markdown": "^2.4.2",
-    "rebound": "0.0.13"
+    "rebound": "0.0.13",
+    "rellax": "^1.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.1.0",

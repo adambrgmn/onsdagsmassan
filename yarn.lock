@@ -3173,6 +3173,10 @@ regjsparser@^0.1.4:
   dependencies:
     jsesc "~0.5.0"
 
+rellax@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/rellax/-/rellax-1.0.0.tgz#89e2a4bc73273a098f0925e6f2a18a5aaae8d0d4"
+
 repeat-element@^1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/repeat-element/-/repeat-element-1.1.2.tgz#ef089a178d1483baae4d93eb98b4f9e4e11d990a"
