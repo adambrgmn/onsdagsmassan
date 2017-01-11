@@ -1,9 +1,6 @@
-import axios from 'axios';
+import Firebase from './firebase';
 
-const firebaseUrl = (path) => `https://onsdagsmassan-e0d2b.firebaseio.com/${path}.json`;
+const app = Firebase.of(process.env.FB_API_KEY);
 
-export const getSections = () => axios.get(firebaseUrl('sections'))
-  .then((res) => res.data);
-
-export const getSection = (section) => axios.get(firebaseUrl(`sections/${section}`))
-  .then((res) => res.data);
+export const getSections = app.getSections.bind(app);
+export const getSection = app.getSection.bind(app);

@@ -16,7 +16,7 @@ fi
 
 echo "Deploying from branch ${BRANCH}"
 echo "with NODE_ENV=${NODE_ENV}"
-now -e NODE_ENV=${NODE_ENV} -t ${NOW_TOKEN} -C -f
+now -e NODE_ENV=${NODE_ENV} -e FB_API_KEY=${FB_API_KEY} -t ${NOW_TOKEN} -C -f
 
 echo "Setting alias for deployment to ${ALIAS}"
 now alias set $(get_id) ${ALIAS} -t ${NOW_TOKEN}
