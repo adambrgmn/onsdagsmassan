@@ -13,8 +13,7 @@ branches:
   - develop
 
 env:
-  - ALIAS_DEVELOPMENT=beta.onsdagsmassan.se
-  - ALIAS_PRODUCTION=onsdagsmassan.se
+  - ALIAS_DEVELOPMENT=beta.onsdagsmassan.se ALIAS_PRODUCTION=onsdagsmassan.se
 
 notifications:
   email: false
