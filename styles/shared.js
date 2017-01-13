@@ -15,17 +15,20 @@ export const fadeIn = keyframes('fadeIn', {
   '100%': { opacity: 1, transform: 'translateX(0)' },
 });
 
-export const grid = (reverse) => css({
-  display: 'flex',
-  flexFlow: `${reverse ? 'row-reverse' : 'row'} wrap`,
-  alignItems: 'center',
-  alignContent: 'center',
-  justifyContent: 'center',
-  padding: '1rem',
-  minHeight: '100vh',
-  width: '100%',
-  color: color.body,
-});
+export const grid = (reverse) => merge(
+  {
+    display: 'flex',
+    flexFlow: `${reverse ? 'row-reverse' : 'row'} wrap`,
+    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    padding: '1rem',
+    minHeight: '100vh',
+    width: '100%',
+    color: color.body,
+  },
+  media(mediaQuery.tablet, { minHeight: '110vh' }),
+);
 
 export const gridItem = merge(
   { width: '100%', margin: '1rem', transition: 'opacity 1s, transform 1s', animation: `${fadeIn} 1s` },
