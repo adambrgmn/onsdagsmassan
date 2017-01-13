@@ -22,7 +22,7 @@ export const grid = (reverse) => css({
   alignContent: 'center',
   justifyContent: 'center',
   padding: '1rem',
-  minHeight: '100vh',
+  minHeight: '110vh',
   width: '100%',
   color: color.body,
 });

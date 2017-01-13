@@ -5,7 +5,7 @@ import css from 'next/css';
 
 import Img from '../Img';
 import SlowScroll from '../SlowScroll';
-import { Italic, Uppercase } from '../TextComp';
+import { Uppercase } from '../TextComp';
 
 import { grid, responsiveImg, uppercase } from '../../styles/shared';
 import { mediaQuery, font } from '../../styles/variables';
@@ -20,8 +20,8 @@ export default ({ img }) => (
     <div {...styles.headerTitleContainer}>
       <h1 {...styles.headerTitle}>Onsdagsm&auml;ssan</h1>
       <h2 {...styles.headerSubTitle}>
-        Varje onsdag kl 18.30 <br />
-        <Italic>i</Italic> <Uppercase>Betlehemskyrkan</Uppercase>
+        Varje onsdag kl 18.30 i<br />
+        <Uppercase>Betlehemskyrkan kapell</Uppercase>
       </h2>
     </div>
   </header>
