@@ -21,7 +21,7 @@ export default ({ img }) => (
       <h1 {...styles.headerTitle}>Onsdagsm&auml;ssan</h1>
       <h2 {...styles.headerSubTitle}>
         Varje onsdag kl 18.30 i<br />
-        <Uppercase>Betlehemskyrkan kapell</Uppercase>
+        <Uppercase>Betlehemskyrkans kapell</Uppercase>
       </h2>
     </div>
   </header>
