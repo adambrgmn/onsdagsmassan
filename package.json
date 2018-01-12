@@ -10,10 +10,7 @@
     "deploy": "./scripts/deploy.sh"
   },
   "repository": "adambrgmn/onsdagsmassan",
-  "keywords": [
-    "React",
-    "Next.js"
-  ],
+  "keywords": ["React", "Next.js"],
   "license": "MIT",
   "author": {
     "name": "Adam Bergman",
