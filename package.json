@@ -7,7 +7,9 @@
     "dev": "env-cmd .env next",
     "build": "next build",
     "start": "next start",
-    "deploy": "./scripts/deploy.sh"
+    "deploy":
+      "now -e NODE_ENV=production -e FB_API_KEY=$FB_API_KEY --token $NOW_TOKEN --npm",
+    "alias": "now alias --token=$NOW_TOKEN"
   },
   "repository": "adambrgmn/onsdagsmassan",
   "keywords": ["React", "Next.js"],
