@@ -8,6 +8,7 @@ npm-debug.log*
 
 # Cache
 .cache
+.eslintcache
 
 # Coverage directory used by tools like istanbul
 coverage
