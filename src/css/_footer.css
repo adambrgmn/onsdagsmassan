@@ -1,0 +1,38 @@
+.footer {
+  padding-bottom: 2rem;
+  text-align: center;
+  letter-spacing: 2px;
+  color: var(--color-secondary);
+}
+
+.footer__info-middle {
+  display: none;
+  fill: currentColor;
+}
+
+@media sceen and (max-width: 30em) {
+}
+
+@media screen and (min-width: 30em) {
+  .footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer__info {
+    margin: 0 1rem;
+  }
+
+  .footer__info-middle {
+    display: block;
+    width: 3rem;
+  }
+}
+
+@media screen and (min-width: 30em) and (max-width: 60em) {
+}
+
+@media screen and (min-width: 60em) {
+}

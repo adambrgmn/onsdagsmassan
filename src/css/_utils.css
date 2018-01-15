@@ -1,0 +1,37 @@
+.img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.link {
+  position: relative;
+  font-family: var(--color-secondary);
+  text-decoration: none;
+  color: var(--color-secondary);
+}
+
+.link::after {
+  content: '→';
+  position: absolute;
+  top: 2px;
+  left: 110%;
+  transform: translateX(0);
+  transition: transform var(--duration-short) var(--ease-in-out-quad);
+}
+
+.link:hover::after {
+  transform: translateX(25%);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.italic {
+  font-style: italic;
+}

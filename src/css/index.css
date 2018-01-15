@@ -1,0 +1,54 @@
+@import './_reset.css';
+@import './_utils.css';
+@import './_section.css';
+@import './_article.css';
+@import './_header.css';
+@import './_navigation.css';
+@import './_footer.css';
+
+:root {
+  --color-main: #78a3bc;
+  --color-secondary: #dc6f5f;
+
+  --font-main: 'Gill Sans', 'Cabin', 'sans-serif';
+  --font-body: 'EB Garamond', Garamond, serif;
+
+  --lh-title: 1.5;
+  --lh-body: 1.4;
+
+  --layer--1: -1;
+  --layer-0: 0;
+  --layer-1: 0;
+  --layer-2: 0;
+
+  --duration-short: 0.3s;
+  --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  border-right: 0.8rem solid var(--color-main);
+  border-left: 0.8rem solid var(--color-main);
+  background: url('../img/bg.jpg');
+  font-family: var(--font-main);
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  background-color: var(--color-main);
+  left: 0;
+  right: 0;
+  height: 0.8rem;
+  z-index: var(--layer-1);
+}
+
+body::before {
+  top: 0;
+}
+
+body::after {
+  bottom: 0;
+}

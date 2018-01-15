@@ -1,9 +1,10 @@
 {
   "name": "onsdagsmassan",
+  "version": "0.0.0",
   "description": "Home of onsdagsmassan.se",
   "scripts": {
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html",
+    "build": "parcel build src/index.html --public-url ./",
     "test": "frans-scripts test",
     "lint": "frans-scripts lint",
     "format": "frans-scripts format",
@@ -12,7 +13,9 @@
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "frans-scripts": "^2.1.1",
-    "parcel-bundler": "^1.4.1",
-    "postcss-cssnext": "^3.0.2"
+    "parcel-bundler": "^1.4.1"
+  },
+  "dependencies": {
+    "raf-schd": "^2.1.0"
   }
 }
