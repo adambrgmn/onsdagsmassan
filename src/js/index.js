@@ -1,6 +1,5 @@
 import scrollDir from './utils/scroll-dir';
 import infotext from './infotext';
-import parallax from './utils/parallax';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nav = document.querySelector('.nav');
@@ -16,6 +15,4 @@ document.addEventListener('DOMContentLoaded', () => {
     readMoreLink.remove();
     parent.appendChild(moreText);
   });
-
-  [...document.querySelectorAll('.parallax')].forEach(parallax);
 });
