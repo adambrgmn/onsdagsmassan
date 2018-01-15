@@ -1,0 +1,11 @@
+.article {
+  width: 100%;
+  max-width: calc(400 / 16 * 1rem);
+  margin: 0 auto;
+  padding: 4rem 1rem;
+  color: var(--color-main);
+}
+
+.article__image {
+  margin-bottom: 2rem;
+}

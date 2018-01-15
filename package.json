@@ -1,5 +1,6 @@
 {
   "name": "onsdagsmassan",
+  "version": "0.0.0",
   "description": "Home of onsdagsmassan.se",
   "scripts": {
     "start": "parcel src/index.html",
