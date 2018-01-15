@@ -21,6 +21,7 @@
 
 .section__content {
   color: var(--color-main);
+  max-width: 25rem;
 }
 
 .content__title {
