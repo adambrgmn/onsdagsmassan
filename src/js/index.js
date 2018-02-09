@@ -1,3 +1,4 @@
+import parallax from './utils/parallax';
 import scrollDir from './utils/scroll-dir';
 import infotext from './infotext';
 
@@ -15,4 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     readMoreLink.remove();
     parent.appendChild(moreText);
   });
+
+  parallax();
 });
