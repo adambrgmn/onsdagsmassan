@@ -7,9 +7,9 @@
     "build": "parcel build src/index.html --public-url ./"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.5.1"
+    "parcel-bundler": "^1.11.0"
   },
   "dependencies": {
-    "raf-schd": "^2.1.0"
+    "raf-schd": "^4.0.0"
   }
 }
